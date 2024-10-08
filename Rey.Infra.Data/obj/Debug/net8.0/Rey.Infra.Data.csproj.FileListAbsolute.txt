@@ -1,0 +1,15 @@
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\bin\Debug\net8.0\Rey.Infra.Data.deps.json
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\bin\Debug\net8.0\Rey.Infra.Data.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\bin\Debug\net8.0\Rey.Infra.Data.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\bin\Debug\net8.0\Rey.Domain.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\bin\Debug\net8.0\Rey.Domain.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.AssemblyInfo.cs
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infr.1A648E7F.Up2Date
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\refint\Rey.Infra.Data.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\Rey.Infra.Data.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Data\obj\Debug\net8.0\ref\Rey.Infra.Data.dll

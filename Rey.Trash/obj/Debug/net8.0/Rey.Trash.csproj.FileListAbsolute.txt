@@ -1,0 +1,15 @@
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\bin\Debug\net8.0\Rey.Trash.deps.json
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\bin\Debug\net8.0\Rey.Trash.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\bin\Debug\net8.0\Rey.Trash.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\bin\Debug\net8.0\Rey.Domain.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\bin\Debug\net8.0\Rey.Domain.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.csproj.AssemblyReference.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.AssemblyInfoInputs.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.AssemblyInfo.cs
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.csproj.CoreCompileInputs.cache
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.csproj.Up2Date
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\refint\Rey.Trash.dll
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\Rey.Trash.pdb
+C:\Users\zsant\source\repos\Rey.Api\Rey.Trash\obj\Debug\net8.0\ref\Rey.Trash.dll
