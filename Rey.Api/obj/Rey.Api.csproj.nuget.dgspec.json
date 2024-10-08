@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Api\\Rey.Api.csproj": {}
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Rey.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Api\\Rey.Api.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Rey.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Api\\Rey.Api.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Rey.Api.csproj",
         "projectName": "Rey.Api",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Api\\Rey.Api.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Rey.Api.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Api\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj"
               },
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\Rey.Infra.Security.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\Rey.Infra.Security.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\Rey.Infra.Security.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\Rey.Infra.Security.csproj"
               }
             }
           }
@@ -63,15 +63,29 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
@@ -87,7 +101,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.8.1, )"
             }
           },
           "imports": [
@@ -113,14 +127,14 @@
         }
       }
     },
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj",
         "projectName": "Rey.Application",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -142,8 +156,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj"
               }
             }
           }
@@ -169,11 +183,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -196,14 +224,14 @@
         }
       }
     },
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj",
         "projectName": "Rey.Domain",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -248,11 +276,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -275,14 +317,14 @@
         }
       }
     },
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\Rey.Infra.Data.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Rey.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\Rey.Infra.Data.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Rey.Infra.Data.csproj",
         "projectName": "Rey.Infra.Data",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\Rey.Infra.Data.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Rey.Infra.Data.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -304,8 +346,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj"
               }
             }
           }
@@ -331,19 +373,29 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             },
             "Npgsql": {
               "target": "Package",
@@ -374,14 +426,14 @@
         }
       }
     },
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\Rey.Infra.Security.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\Rey.Infra.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\Rey.Infra.Security.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\Rey.Infra.Security.csproj",
         "projectName": "Rey.Infra.Security",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\Rey.Infra.Security.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\Rey.Infra.Security.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Security\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -403,11 +455,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Application\\Rey.Application.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Rey.Application.csproj"
               },
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\Rey.Infra.Data.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Infra.Data\\Rey.Infra.Data.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Rey.Infra.Data.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Rey.Infra.Data.csproj"
               }
             }
           }
@@ -433,11 +485,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [

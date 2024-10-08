@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Trash\\Rey.Trash.csproj": {}
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Trash\\Rey.Trash.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj",
         "projectName": "Rey.Domain",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -56,11 +56,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -83,14 +97,14 @@
         }
       }
     },
-    "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Trash\\Rey.Trash.csproj": {
+    "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Trash\\Rey.Trash.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Trash\\Rey.Trash.csproj",
+        "projectUniqueName": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Trash\\Rey.Trash.csproj",
         "projectName": "Rey.Trash",
-        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Trash\\Rey.Trash.csproj",
+        "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Trash\\Rey.Trash.csproj",
         "packagesPath": "C:\\Users\\zsant\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Trash\\obj\\",
+        "outputPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Trash\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -112,8 +126,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj": {
-                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey.Api\\Rey.Domain\\Rey.Domain.csproj"
+              "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj": {
+                "projectPath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Rey.Domain.csproj"
               }
             }
           }
@@ -137,9 +151,23 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.1.2, )"
+              "version": "[8.1.1, )"
             }
           },
           "imports": [
