@@ -14,6 +14,7 @@ C:\Users\zsant\source\repos\Rey.Api\Rey.Application\obj\Debug\net8.0\refint\Rey.
 C:\Users\zsant\source\repos\Rey.Api\Rey.Application\obj\Debug\net8.0\Rey.Application.pdb
 C:\Users\zsant\source\repos\Rey.Api\Rey.Application\obj\Debug\net8.0\ref\Rey.Application.dll
 C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Application.deps.json
+C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Application.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Application.dll
 C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Application.pdb
 C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Domain.dll
@@ -28,6 +29,5 @@ C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\Rey.Appl.FB3B3E
 C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\Rey.Application.dll
 C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\refint\Rey.Application.dll
 C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\Rey.Application.pdb
-C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\ref\Rey.Application.dll
-C:\Users\zsant\source\repos\Rey\Rey.Application\bin\Debug\net8.0\Rey.Application.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\Rey.Application.genruntimeconfig.cache
+C:\Users\zsant\source\repos\Rey\Rey.Application\obj\Debug\net8.0\ref\Rey.Application.dll

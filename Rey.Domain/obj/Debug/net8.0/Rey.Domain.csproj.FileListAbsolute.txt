@@ -11,6 +11,7 @@ C:\Users\zsant\source\repos\Rey.Api\Rey.Domain\obj\Debug\net8.0\refint\Rey.Domai
 C:\Users\zsant\source\repos\Rey.Api\Rey.Domain\obj\Debug\net8.0\Rey.Domain.pdb
 C:\Users\zsant\source\repos\Rey.Api\Rey.Domain\obj\Debug\net8.0\ref\Rey.Domain.dll
 C:\Users\zsant\source\repos\Rey\Rey.Domain\bin\Debug\net8.0\Rey.Domain.deps.json
+C:\Users\zsant\source\repos\Rey\Rey.Domain\bin\Debug\net8.0\Rey.Domain.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Domain\bin\Debug\net8.0\Rey.Domain.dll
 C:\Users\zsant\source\repos\Rey\Rey.Domain\bin\Debug\net8.0\Rey.Domain.pdb
 C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\Rey.Domain.csproj.AssemblyReference.cache
@@ -22,6 +23,5 @@ C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\Rey.Domain.sourcelin
 C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\Rey.Domain.dll
 C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\refint\Rey.Domain.dll
 C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\Rey.Domain.pdb
-C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\ref\Rey.Domain.dll
-C:\Users\zsant\source\repos\Rey\Rey.Domain\bin\Debug\net8.0\Rey.Domain.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\Rey.Domain.genruntimeconfig.cache
+C:\Users\zsant\source\repos\Rey\Rey.Domain\obj\Debug\net8.0\ref\Rey.Domain.dll

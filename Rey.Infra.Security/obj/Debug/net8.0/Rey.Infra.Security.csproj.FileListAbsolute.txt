@@ -18,6 +18,7 @@ C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Security\obj\Debug\net8.0\refint\R
 C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Security\obj\Debug\net8.0\Rey.Infra.Security.pdb
 C:\Users\zsant\source\repos\Rey.Api\Rey.Infra.Security\obj\Debug\net8.0\ref\Rey.Infra.Security.dll
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Infra.Security.deps.json
+C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Infra.Security.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Infra.Security.dll
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Infra.Security.pdb
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Application.dll
@@ -36,6 +37,5 @@ C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\Rey.Infr.89C
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\Rey.Infra.Security.dll
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\refint\Rey.Infra.Security.dll
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\Rey.Infra.Security.pdb
-C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\ref\Rey.Infra.Security.dll
-C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\bin\Debug\net8.0\Rey.Infra.Security.runtimeconfig.json
 C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\Rey.Infra.Security.genruntimeconfig.cache
+C:\Users\zsant\source\repos\Rey\Rey.Infra.Security\obj\Debug\net8.0\ref\Rey.Infra.Security.dll

@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿/*
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Rey.Application.Interfaces;
-using Rey.Application.ViewModel;
 using Rey.Domain.Entities;
 using Rey.Domain.Entities.Auth;
 using System.IdentityModel.Tokens.Jwt;
@@ -263,3 +262,4 @@ namespace Rey.Api.Exemplos
         }
     }
 }
+    */

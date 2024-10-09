@@ -24,10 +24,35 @@ namespace Rey.Application.AppService
             _logger = logger;
         }
 
+        public UsuarioExternoViewModel CreateAndGet(UsuarioExternoViewModel permissaoExternaViewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteById(long id)
+        {
+            throw new NotImplementedException();
+        }
+
         public UsuarioExternoViewModel FindUserByCpf(string cpf)
         {
             var res = _usuarioExternoService.FindUserByCpf(cpf);
             return _mapper.Map<UsuarioExternoViewModel>(res);
+        }
+
+        public List<UsuarioExternoViewModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UsuarioExternoViewModel> GetById(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(UsuarioExternoViewModel permissaoExternaViewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

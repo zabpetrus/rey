@@ -17,8 +17,9 @@ builder.Services.AddSwaggerGen();
 
 //Injeção de dependencias
 DependencyInjectionService.RegisterDependencies(builder.Configuration, builder.Services);
-JwtConfiguration.JwtServices(builder.Configuration, builder.Services);
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+JwtConfiguration.JwtServices(builder.Configuration, builder.Services);
 
 builder.Services.AddSwaggerGen(c =>
 {

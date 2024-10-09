@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿/*
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Rey.Application.Interfaces;
-using Rey.Application.ViewModel;
+
 using Rey.Domain.Entities.Auth;
 using Rey.Domain.Interfaces.IServices;
 
@@ -75,3 +75,4 @@ namespace Rey.Api.Exemplos
         }
     }
 }
+             */
