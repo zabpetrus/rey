@@ -9,11 +9,11 @@ namespace Rey.Application.Interfaces
 {
     public interface IPermissaoExternoAppService
     {
-        object CreateAndGet(PermissaoExternaViewModel permissaoExternaViewModel);
+        PermissaoExternaViewModel CreateAndGet(PermissaoExternaViewModel permissaoExternaViewModel);
         bool DeleteById(long id);
-        object GetAll();
-        object GetById(long id);
-        object GetByPermissionName(string name);
+        List<PermissaoExternaViewModel> GetAll();
+        PermissaoExternaViewModel GetById(long id);
+        List<PermissaoExternaViewModel> GetByPermissionName(string name);
         bool Update(PermissaoExternaViewModel permissaoExternaViewModel);
     }
 }

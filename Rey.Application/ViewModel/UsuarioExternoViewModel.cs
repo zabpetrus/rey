@@ -8,12 +8,14 @@ namespace Rey.Application.ViewModel
 {
     public class UsuarioExternoViewModel
     {
-        public long Id { get; set; }
-        public string NomeDeUsuario { get; set; }
-        public string HashSenha { get; set; }
-        public string Email { get; set; }
+        public string Nome { get; set; }
+        public string Senha { get; private set; }
         public string Cpf { get; set; }
-        public string RefreshToken { get; set; }
-        public DateTime RefreshTokenExpiryTime { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
+        public string Sal { get; private set; }
+        public string SenhaHash { get; private set; }
+        public bool? Ativo { get; set; }
+        public long Id { get; internal set; }
     }
 }

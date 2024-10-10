@@ -54,7 +54,8 @@ namespace Rey.Infra.Security.DI
         {
             services.AddScoped(typeof(IAuthenticatorService), typeof(AuthenticatorService));
             services.AddScoped<IUsuarioExternoAppService, UsuarioExternoAppService>(); 
-            services.AddScoped<IPerfilExternoAppService, PerfilExternoAppService>();
+            services.AddScoped<IPerfilExternoAppService, PerfilExternoAppService>();  
+            services.AddScoped<IPermissaoExternoAppService, PermissaoExternoAppService>();
             services.AddScoped<IRefreshTokenAppService,RefreshTokenAppService>();
 
         }

@@ -19,17 +19,20 @@ namespace Rey.Infra.Security.JWT
 
         private static void RegisterJwtServices(IServiceCollection services, IConfiguration configuration)
         {
+            // Obtenha a seção JWTSettings do appsettings.json
+            IConfigurationSection jwtsettings = configuration.GetSection("JWTSettings");
 
-            // Obtenha a seção JwtSettings do appsettings.json
-            var jwtsettings = configuration.GetSection("JWTKey");
+            // Obtenha a chave secreta da seção JWTSettings
+            string secretkey = jwtsettings["Secret"];
 
-            // Obtenha a chave secreta da seção Auth
-            var secretkey = jwtsettings["Secret"];
+            // Verifique se a chave secreta é nula ou vazia
+            if (string.IsNullOrEmpty(secretkey))
+            {
+                throw new ArgumentNullException("A chave secreta JWT não está configurada. Verifique a configuração no appsettings.json.");
+            }
 
             // Codifique a chave secreta como bytes
-            var encodedkey = Encoding.UTF8.GetBytes(secretkey);
-
-
+            byte[] encodedkey = Encoding.UTF8.GetBytes(secretkey);
 
             services.AddAuthentication(opt =>
             {
@@ -38,19 +41,19 @@ namespace Rey.Infra.Security.JWT
             })
             .AddJwtBearer(options =>
             {
-               options.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuer = true,
-                   ValidateAudience = true,
-                   ValidateLifetime = true,
-                   ValidateIssuerSigningKey = true,
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
 
-                   ValidIssuer = jwtsettings["validIssuer"],
-                   ValidAudience = jwtsettings["validAudience"],
-                   IssuerSigningKey = new SymmetricSecurityKey(encodedkey)
-               };
+                    ValidIssuer = jwtsettings["ValidIssuer"],
+                    ValidAudience = jwtsettings["ValidAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(encodedkey)
+                };
             });
-
         }
+
     }
 }

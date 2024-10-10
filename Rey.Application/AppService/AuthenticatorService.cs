@@ -44,7 +44,7 @@ public class AuthenticatorService : IAuthenticatorService
 
         // Obter o usuário associado ao refresh token
         UsuarioExterno usuario = _usuarioExternoService.GetByIdAsync(storedRefreshToken.UsuarioId).Result;
-        if (usuario == null || (username != null && usuario.NomeDeUsuario != username))
+        if (usuario == null || (username != null && usuario.Nome != username))
         {
             throw new SecurityTokenException("Usuário associado ao token não encontrado.");
         }
@@ -52,14 +52,14 @@ public class AuthenticatorService : IAuthenticatorService
         // Gerar um novo token JWT (AccessToken)
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, usuario.NomeDeUsuario)
+            new Claim(ClaimTypes.Name, usuario.Nome)
         };
 
         // Adicionar os perfis de usuário como roles
         var perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
         foreach (var perfil in perfisDeUsuario)
         {
-            claims.Add(new Claim(ClaimTypes.Role, perfil.Nome));
+            claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo));
         }
 
         // Gerar novo AccessToken
@@ -102,7 +102,7 @@ public class AuthenticatorService : IAuthenticatorService
         return new UsuarioExternoViewModel
         {
             Id = usuario.Id,
-            NomeDeUsuario = usuario.NomeDeUsuario,
+            Nome = usuario.Nome,
             Email = usuario.Email
         };
     }

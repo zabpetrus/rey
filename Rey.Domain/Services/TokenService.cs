@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Rey.Domain.Entities;
 using Rey.Domain.Entities.Auth;
+using Rey.Domain.Enums;
 using Rey.Domain.Interfaces.IRepository;
 using Rey.Domain.Interfaces.IServices;
 using System;
@@ -95,7 +96,7 @@ namespace Rey.Domain.Services
             {
                 Token = Convert.ToBase64String(randomNumber),
                 Created = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddDays(7), // Defina a expiração do refresh token
+                Expires = DateTime.UtcNow.AddDays(7), 
                 CreatedByIp = createdByIp
             };
 
@@ -174,13 +175,13 @@ namespace Rey.Domain.Services
             // Gerar claims para o JWT com base nas informações do usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, usuario.NomeDeUsuario)
+                new Claim(ClaimTypes.Name, usuario.Nome)
             };
 
             // Adicionar os perfis como roles
             foreach (var perfil in perfisDeUsuario)
             {
-                claims.Add(new Claim(ClaimTypes.Role, perfil.Nome));
+                claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo));
             }
 
             // Gerar o token JWT
@@ -223,7 +224,7 @@ namespace Rey.Domain.Services
             // Criar um novo JWT baseado nas claims do usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, usuario.NomeDeUsuario),
+                new Claim(ClaimTypes.Name, usuario.Nome),
 
             };
 
@@ -233,7 +234,7 @@ namespace Rey.Domain.Services
             // Adicionar os perfis como roles
             foreach (var perfil in perfisDeUsuario)
             {
-                claims.Add(new Claim(ClaimTypes.Role, perfil.Nome));
+                claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo));
             }
 
             var novoAccessToken = GerarTokenJwtByClaims(claims);
@@ -272,9 +273,8 @@ namespace Rey.Domain.Services
             }
 
             // Redefinir a senha (criptografar a nova senha antes de armazenar)
-            usuario.CriarHashSenha(novasenha);
-            usuario.RefreshTokenReset = null;  // Remover o token de reset após o uso
-            usuario.ResetPasswordTokenExpiration = null;
+            usuario.RedefinirSenha(novasenha);
+         
 
             if (await _usuarioExternoService.UpdateAsync(usuario))
             {
@@ -300,7 +300,7 @@ namespace Rey.Domain.Services
 
             UsuarioExterno novo = _mapper.Map<UsuarioExterno>(registration);
 
-            novo.CriarHashSenha(registration.HashSenha);
+            novo.VerificarSenha(registration.HashSenha);
 
             UsuarioExterno criado = await _usuarioExternoService.CreateAsync(novo);  // Salvar o novo usuário no banco
 

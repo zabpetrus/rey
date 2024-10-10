@@ -52,13 +52,6 @@ namespace Rey.Trash.Contracts
                 throw new InvalidOperationException("Usuário não está autenticado.");
             }
 
-            _usuarioExterno.RefreshToken = refreshToken;
-
-            if (populateExp)
-            {
-                _usuarioExterno.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
-            }
-
             await _userManager.UpdateAsync(_usuarioExterno);
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 

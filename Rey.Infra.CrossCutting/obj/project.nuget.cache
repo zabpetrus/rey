@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ptJGuognJV0=",
+  "dgSpecHash": "oXYE3iMzrTA=",
   "success": true,
   "projectFilePath": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.CrossCutting\\Rey.Infra.CrossCutting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zsant\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\zsant\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\zsant\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\zsant\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.10\\microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
     "C:\\Users\\zsant\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.10\\microsoft.aspnetcore.authorization.8.0.10.nupkg.sha512",

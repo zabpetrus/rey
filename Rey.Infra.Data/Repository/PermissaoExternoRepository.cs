@@ -1,4 +1,5 @@
-﻿using Rey.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Rey.Domain.Entities;
 using Rey.Domain.Interfaces.IRepository;
 using Rey.Infra.Data.Context;
 
@@ -13,6 +14,54 @@ namespace Rey.Infra.Data.Repository
             _context = context;
         }
 
+        public PermissaoExterno CreateAndGet(PermissaoExterno perfil)
+        {
+            EntityEntry<PermissaoExterno> ops = _context.PermissoesExternas.Add(perfil);
+
+            if (ops == null)
+            {
+                throw new InvalidOperationException("Erro na inserção");
+            }
+
+            _context.SaveChanges();
+
+            return ops.Entity;
+
+        }
+
+        public bool DeleteById(long id)
+        {
+            // Busca a permissão pelo ID
+            var permissao = _context.PermissoesExternas.Find(id);
+
+            if (permissao == null)
+                return false; // Se não encontrar, retorna falso
+
+            // Remove a permissão
+            _context.PermissoesExternas.Remove(permissao);
+
+            // Salva as mudanças no banco de dados
+            _context.SaveChanges();
+
+            return true; // Retorna verdadeiro indicando que a exclusão foi bem-sucedida
+        }
+
+        public List<PermissaoExterno> GetAll()
+        {
+            return _context.PermissoesExternas.ToList();
+        }
+
+        public PermissaoExterno GetById(long id)
+        {
+            return _context.PermissoesExternas.Find(id);
+        }
+
+        public List<PermissaoExterno> GetByPermissionName(string name)
+        {
+            return _context.PermissoesExternas
+                 .Where(p => p.Nome == name)
+                 .ToList();
+        }
 
         public List<PerfilExterno> ObterPerfisDeUsuario(int usuarioId)
         {
@@ -46,5 +95,18 @@ namespace Rey.Infra.Data.Repository
             return permissoes; // Retorna a lista de PermissaoExterno
         }
 
+        public bool Update(PermissaoExterno perfilExternoViewModel)
+        {
+            if (perfilExternoViewModel == null)
+                return false;
+
+            // Atualiza a permissão no contexto
+            _context.PermissoesExternas.Update(perfilExternoViewModel);
+
+            // Salva as mudanças no banco de dados
+            _context.SaveChanges();
+
+            return true; // Retorna verdadeiro indicando que a atualização foi bem-sucedida
+        }
     }
 }

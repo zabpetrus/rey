@@ -16,10 +16,15 @@ namespace Rey.Infra.Security.Mapping
             // Definição dos mapeamentos aqui
             CreateMap<UsuarioExterno, UsuarioExternoViewModel>();
             CreateMap<UsuarioExternoViewModel, UsuarioExterno>();
+
             CreateMap<PerfilExterno, PerfilExternoViewModel>();
             CreateMap<PerfilExternoViewModel, PerfilExterno>();
-            CreateMap<LoginRequestViewModel, UsuarioExterno>()
-            .ForMember(dest => dest.HashSenha, opt => opt.Ignore()); 
+
+            CreateMap<PermissaoExterno, PermissaoExternaViewModel>();
+            CreateMap<PermissaoExternaViewModel, PermissaoExterno>();
+
+            CreateMap<LoginRequestViewModel, UsuarioExterno>();
+            
 
             CreateMap<RegisterViewModel, UsuarioExterno>();
             CreateMap<ResetPasswordViewModel, UsuarioExterno>();

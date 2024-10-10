@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Rey.Domain.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Rey.Domain.Entities.Auth
 {
@@ -17,6 +13,9 @@ namespace Rey.Domain.Entities.Auth
 
         public long UsuarioId { get; set; }
 
+        public TipoUsuario TipoUsuario { get; set; }
+
+        // O token de refresh
         public string Token { get; set; }
 
         // Data e hora em que o token expira
@@ -50,6 +49,18 @@ namespace Rey.Domain.Entities.Auth
         public bool IsActive => !IsRevoked && !IsExpired;
 
 
+        // Propriedades adicionais para gerenciamento de reset
+
+
+        // Token para reset de refresh token
+        public string RefreshTokenReset { get; internal set; }
+
+        // Expiração do refresh token
+        public DateTime? RefreshTokenExpiryTime { get; internal set; }
+
+        // Expiração do token de redefinição de senha
+        public string ResetPasswordTokenExpiration { get; internal set; }
+
         // Conversão implícita para string
         public static implicit operator string(RefreshToken refreshToken) => refreshToken.Token;
 
@@ -57,4 +68,3 @@ namespace Rey.Domain.Entities.Auth
         public static implicit operator RefreshToken(string token) => new RefreshToken { Token = token };
     }
 }
-

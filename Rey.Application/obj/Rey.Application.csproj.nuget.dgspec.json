@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "Flunt": {
+              "target": "Package",
+              "version": "[2.0.5, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.10, )"
@@ -164,6 +168,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Flunt": {
+              "target": "Package",
+              "version": "[2.0.5, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

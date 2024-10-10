@@ -112,73 +112,173 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Rey.Api.Exemplos.ExemploAuthExternoController",
-    "Method": "Login",
-    "RelativePath": "api/ExemploAuthExterno/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Rey.Application.ViewModel.LoginRequestViewModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Rey.Api.Exemplos.ExemploAuthExternoController",
-    "Method": "RefreshToken",
-    "RelativePath": "api/ExemploAuthExterno/refresh-token",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "tokenModel",
-        "Type": "Rey.Application.ViewModel.TokenViewModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Rey.Api.Exemplos.ExemploAuthExternoController",
-    "Method": "Register",
-    "RelativePath": "api/ExemploAuthExterno/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Rey.Application.ViewModel.UsuarioExternoViewModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Rey.Api.Exemplos.ExemploAuthExternoController",
-    "Method": "RevokeAll",
-    "RelativePath": "api/ExemploAuthExterno/revoke-all",
-    "HttpMethod": "POST",
+    "ContainingType": "Rey.Api.Controllers.PerfilExternoController",
+    "Method": "GetAll",
+    "RelativePath": "api/PerfilExterno",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Rey.Api.Exemplos.ExemploAuthExternoController",
-    "Method": "Revoke",
-    "RelativePath": "api/ExemploAuthExterno/revoke/{username}",
+    "ContainingType": "Rey.Api.Controllers.PerfilExternoController",
+    "Method": "Create",
+    "RelativePath": "api/PerfilExterno",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "username",
+        "Name": "perfilExternoViewModel",
+        "Type": "Rey.Application.ViewModel.PerfilExternoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PerfilExternoController",
+    "Method": "GetById",
+    "RelativePath": "api/PerfilExterno/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PerfilExternoController",
+    "Method": "Update",
+    "RelativePath": "api/PerfilExterno/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "perfilExternoViewModel",
+        "Type": "Rey.Application.ViewModel.PerfilExternoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PerfilExternoController",
+    "Method": "Delete",
+    "RelativePath": "api/PerfilExterno/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "GetAll",
+    "RelativePath": "api/PermissaoExterna",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "CreatePermission",
+    "RelativePath": "api/PermissaoExterna",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "permissaoExternaViewModel",
+        "Type": "Rey.Application.ViewModel.PermissaoExternaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "GetById",
+    "RelativePath": "api/PermissaoExterna/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "Update",
+    "RelativePath": "api/PermissaoExterna/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "permissaoExternaViewModel",
+        "Type": "Rey.Application.ViewModel.PermissaoExternaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "Delete",
+    "RelativePath": "api/PermissaoExterna/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.PermissaoExternaController",
+    "Method": "GetByPermissionName",
+    "RelativePath": "api/PermissaoExterna/name/{name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -186,29 +286,82 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Rey.Api.Exemplos.TokenController",
-    "Method": "Refresh",
-    "RelativePath": "api/Token/refresh",
+    "ContainingType": "Rey.Api.Controllers.UsuarioExternoController",
+    "Method": "GetAll",
+    "RelativePath": "api/UsuarioExterno",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.UsuarioExternoController",
+    "Method": "Create",
+    "RelativePath": "api/UsuarioExterno",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tokenApiModel",
-        "Type": "Rey.Domain.Entities.Auth.TokenApiModel",
+        "Name": "usuarioExternoViewModel",
+        "Type": "Rey.Application.ViewModel.UsuarioExternoViewModel",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Rey.Api.Exemplos.TokenController",
-    "Method": "Revoke",
-    "RelativePath": "api/Token/revoke",
-    "HttpMethod": "POST",
+    "ContainingType": "Rey.Api.Controllers.UsuarioExternoController",
+    "Method": "GetById",
+    "RelativePath": "api/UsuarioExterno/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.UsuarioExternoController",
+    "Method": "Update",
+    "RelativePath": "api/UsuarioExterno/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioExternoViewModel",
+        "Type": "Rey.Application.ViewModel.UsuarioExternoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Rey.Api.Controllers.UsuarioExternoController",
+    "Method": "Delete",
+    "RelativePath": "api/UsuarioExterno/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

@@ -243,3 +243,4 @@ C:\Users\zsant\source\repos\Rey\Rey.Api\obj\Debug\net8.0\Rey.Api.genruntimeconfi
 C:\Users\zsant\source\repos\Rey\Rey.Api\obj\Debug\net8.0\ref\Rey.Api.dll
 C:\Users\zsant\source\repos\Rey\Rey.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\zsant\source\repos\Rey\Rey.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\zsant\source\repos\Rey\Rey.Api\bin\Debug\net8.0\Flunt.dll

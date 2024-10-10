@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rey.Domain.Entities.Auth;
+using Rey.Domain.Entities._Abstract;
 
 namespace Rey.Infra.Data.Repository
 {
@@ -32,7 +33,7 @@ namespace Rey.Infra.Data.Repository
 
         public async Task<UsuarioExterno?> FindByUsernameAsync(string username)
         {
-            return await _applicationDbContext.UsuariosExternos.FirstOrDefaultAsync(e => e.NomeDeUsuario == username);
+            return await _applicationDbContext.UsuariosExternos.FirstOrDefaultAsync(e => e.Nome == username);
         }
 
         public async Task<UsuarioExterno?> FindByCpfAsync(string cpf)
@@ -120,8 +121,31 @@ namespace Rey.Infra.Data.Repository
         // Busca assíncrona por token de redefinição de senha
         public async Task<UsuarioExterno?> GetByResetPasswordTokenAsync(string token)
         {
-            return await _applicationDbContext.UsuariosExternos
-                .FirstOrDefaultAsync(u => u.RefreshTokenReset == token);
+
+            // Verifica se o token foi fornecido
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new ArgumentException("O token não pode ser nulo ou vazio.", nameof(token));
+            }
+
+            // Busca no banco de dados o RefreshToken associado ao token
+            var refreshToken = await _applicationDbContext.Set<RefreshToken>()
+                .Where(rt => rt.ResetPasswordTokenExpiration == token && rt.IsActive)
+                .FirstOrDefaultAsync();
+
+            // Se não encontrar o token ou o token estiver expirado, retorna null
+            if (refreshToken == null || refreshToken.IsExpired)
+            {
+                return null;
+            }
+
+            // Encontra o usuário associado ao RefreshToken
+            var usuario = await _applicationDbContext.Set<UsuarioExterno>()
+                .Where(u => u.Id == refreshToken.UsuarioId)
+                .FirstOrDefaultAsync();
+
+            // Retorna o usuário encontrado ou null
+            return usuario;
         }
 
         public List<PerfilExterno> GetPerfilByUser(UsuarioExterno usuarioExterno)
