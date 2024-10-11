@@ -50,7 +50,7 @@ namespace Rey.Domain.Services
 
         private string GerarJwt(IEnumerable<Claim> claims)
         {
-            string secretKey = _configuration["JwtSettings:Secret"];
+            string secretKey = _configuration["JWTSettings:Secret"];
             if (string.IsNullOrEmpty(secretKey))
             {
                 throw new ArgumentNullException("A chave secreta JWT não foi configurada corretamente.");
@@ -59,13 +59,15 @@ namespace Rey.Domain.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+            var expirationMinutes = double.Parse(_configuration["JWTSettings:AccessTokenExpirationInMinutes"]);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(7),
+                Expires = DateTime.Now.AddMinutes(expirationMinutes),
                 SigningCredentials = creds,
-                Issuer = _configuration["JwtSettings:Issuer"],
-                Audience = _configuration["JwtSettings:Audience"]
+                Issuer = _configuration["JWTSettings:ValidIssuer"],
+                Audience = _configuration["JWTSettings:ValidAudience"]
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -103,23 +105,35 @@ namespace Rey.Domain.Services
             return refreshToken; // Retorne o RefreshToken
         }
 
-
-
         public Token RenovarToken(string refreshToken, List<Claim> claims)
         {
+            // Verificar se o Refresh Token ainda é válido
+            RefreshToken tokenNoBanco = _tokenRepository.GetByTokenAsync(refreshToken);
+            if (tokenNoBanco == null || tokenNoBanco.Expires < DateTime.UtcNow)
+            {
+                throw new SecurityTokenException("Refresh token inválido ou expirado.");
+            }
+
+            // Gerar um novo Access Token
             var novoAccessToken = GerarJwt(claims);
 
-            var token = new Token
+            // Atualizar o Refresh Token se necessário (caso ele esteja próximo da expiração)
+            if (tokenNoBanco.Expires < DateTime.UtcNow.AddDays(1))
+            {
+                var novoRefreshToken = GenerateRefreshToken();
+                tokenNoBanco.Token = novoRefreshToken;
+                tokenNoBanco.Expires = DateTime.UtcNow.AddDays(7);
+                _tokenRepository.UpdateAsync(tokenNoBanco).Wait();
+            }
+
+            return new Token
             {
                 AccessToken = novoAccessToken,
-                RefreshToken = GenerateRefreshToken(),
-                AccessTokenExpiration = DateTime.Now.AddMinutes(7),
-                RefreshTokenExpiration = DateTime.Now.AddDays(7)
+                RefreshToken = tokenNoBanco.Token, // Retornar o mesmo token ou o novo, caso atualizado
+                AccessTokenExpiration = DateTime.UtcNow.AddMinutes(7),
+                RefreshTokenExpiration = tokenNoBanco.Expires
             };
-
-            return token;
         }
-
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
@@ -152,7 +166,6 @@ namespace Rey.Domain.Services
 
         public async Task<Token> Login(string username, string senha)
         {
-            // Verificando se o usuário existe
             UsuarioExterno usuario =
                 await _usuarioExternoService.FindUserByCpfAsync(username) ??
                 await _usuarioExternoService.FindUserByEmailAsync(username) ??
@@ -163,52 +176,44 @@ namespace Rey.Domain.Services
                 throw new Exception("Usuário não encontrado.");
             }
 
-            // Verificando a senha do usuário
             if (!usuario.VerificarSenha(senha))
             {
                 throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
             }
 
-            // Obtendo os perfis relacionados ao usuário
             List<PerfilExterno> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
 
-            // Gerar claims para o JWT com base nas informações do usuário
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, usuario.Nome)
+                new Claim(ClaimTypes.Name, usuario.Nome),
             };
 
-            // Adicionar os perfis como roles
             foreach (var perfil in perfisDeUsuario)
             {
                 claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo));
             }
 
-            // Gerar o token JWT
             Token token = GerarTokenJwtByClaims(claims);
 
-            // Criar e salvar o refresh token no banco de dados
+            // Gerar e salvar o Refresh Token no banco de dados
             RefreshToken refreshToken = new RefreshToken
             {
-                Token = GenerateRefreshToken(),
-                Expires = DateTime.Now.AddDays(7), // Definir a expiração do refresh token
+                Token = token.RefreshToken,
+                Expires = token.RefreshTokenExpiration,
                 Created = DateTime.Now,
-                CreatedByIp = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString() // Obtém o IP do cliente
+                CreatedByIp = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString(),
+                UsuarioId = usuario.Id
             };
 
-            RefreshToken refreshed = await _tokenRepository.CreateAsync(refreshToken);
+            await _tokenRepository.CreateAsync(refreshToken); // Salvando o RefreshToken no banco
 
-            token.RefreshToken = refreshed.ReplacedByToken; // Atribuir o refresh token ao objeto de retorno
-            return token; // Retornar o token
+            return token;
         }
-
-
-
 
         public async Task<Token> RefreshToken(string refreshToken, string ipadress)
         {
             // Validar se o refresh token existe no banco de dados
-            RefreshToken token = await _tokenRepository.GetByTokenAsync(refreshToken);
+            RefreshToken token = _tokenRepository.GetByTokenAsync(refreshToken);
             if (token == null || token.Expires < DateTime.Now)
             {
                 throw new SecurityTokenException("Refresh token inválido ou expirado.");
@@ -307,7 +312,6 @@ namespace Rey.Domain.Services
             return criado;
         }
 
-        // --- Revogar todos os tokens para o usuário ---
         public async Task<bool> RevogarTodosTokens(string username)
         {
             // Buscar o usuário no banco de dados

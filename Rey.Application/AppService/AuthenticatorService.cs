@@ -36,7 +36,7 @@ public class AuthenticatorService : IAuthenticatorService
         }
 
         // Validar o refresh token no banco de dados
-        var storedRefreshToken = _refreshTokenRepository.GetByTokenAsync(refreshToken).Result;
+        var storedRefreshToken = _refreshTokenRepository.CreateRefreshTokenAsync(refreshToken).Result;
         if (storedRefreshToken == null || storedRefreshToken.IsExpired || storedRefreshToken.IsRevoked)
         {
             throw new SecurityTokenException("Refresh token inválido ou expirado.");
@@ -88,15 +88,7 @@ public class AuthenticatorService : IAuthenticatorService
         }
 
         // Revogar todos os refresh tokens do usuário
-        var tokens = _refreshTokenRepository.GetRefreshTokenByUsuarioIdAsync(usuario.Id).Result;
-
-        foreach (var token in tokens)
-        {
-            token.Revoked = DateTime.UtcNow;
-            token.RevokedByIp = "Sistema";  // Pode ser substituído pelo IP de quem fez a requisição
-            token.ReasonRevoked = "Token revogado pelo usuário.";
-            _refreshTokenRepository.UpdateAsync(token);
-        }
+        RefreshToken tokens = _refreshTokenRepository.GetByUserIdAsync(usuario.Id).Result;
 
         // Retornar uma ViewModel do usuário (pode ser customizado)
         return new UsuarioExternoViewModel

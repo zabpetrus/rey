@@ -22,7 +22,6 @@ namespace Rey.Infra.Data.Context
         public DbSet<UsuarioExterno> UsuariosExternos { get; set; }
         public DbSet<PerfilExterno> PerfisExternos { get; set; }
         public DbSet<PermissaoExterno> PermissoesExternas { get; set; }
-
         public DbSet<UsuarioPerfilExterno> UsuariosPerfisExternos { get; set; }
         public DbSet<PerfilPermissaoExterno> PerfisPermissoesExternos { get; set; }
 

@@ -57,20 +57,6 @@ namespace Rey.Infra.Data.Repository
             return refreshToken;
         }
 
-        // Método para buscar um refresh token pelo valor do token
-        public async Task<RefreshToken> GetByTokenAsync(string token)
-        {
-            return await _context.RefreshTokens.FirstOrDefaultAsync(t => t.Token == token);
-        }
-
-        // Método para buscar todos os refresh tokens de um usuário
-        public async Task<List<RefreshToken>> GetByUserIdAsync(long userId)
-        {
-            return await _context.RefreshTokens
-                .Where(t => t.UsuarioId == userId)
-                .ToListAsync();
-        }
-
         // Método para atualizar um refresh token
         public async Task<RefreshToken> UpdateAsync(RefreshToken refreshToken)
         {
@@ -125,7 +111,7 @@ namespace Rey.Infra.Data.Repository
                 return true; // Token deletado com sucesso
             }
 
-            return false; // Token não encontrado
+            return false;
         }
 
         // Método para buscar refresh tokens por UsuarioId
@@ -148,13 +134,6 @@ namespace Rey.Infra.Data.Repository
             }
         }
 
-        // Método para buscar um refresh token pelo valor do token
-        public async Task<RefreshToken> GetRefreshTokenAsync(string token)
-        {
-            return await _context.RefreshTokens
-                .FirstOrDefaultAsync(t => t.Token == token);
-        }
-
         // Método para remover um refresh token
         public async Task<bool> RemoveRefreshTokenAsync(RefreshToken refreshToken)
         {
@@ -168,6 +147,55 @@ namespace Rey.Infra.Data.Repository
             }
 
             return false; // Token não encontrado
+        }
+
+        // Método para criar um refresh token a partir de uma string
+        public async Task<RefreshToken> CreateRefreshTokenAsync(string token)
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = token,
+                Created = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddDays(7),
+            };
+
+            await _context.RefreshTokens.AddAsync(refreshToken);
+            await _context.SaveChangesAsync();
+
+            return refreshToken;
+        }
+
+        // Método para deletar por ID (implementação da interface)
+        async Task<bool> IRefreshTokenExternoRepository.DeleteById(long id)
+        {
+            var refreshToken = await _context.RefreshTokens.FindAsync(id);
+
+            if (refreshToken != null)
+            {
+                _context.RefreshTokens.Remove(refreshToken);
+                await _context.SaveChangesAsync();
+                return true; // Token deletado com sucesso
+            }
+
+            return false; // Token não encontrado
+        }
+
+        // Método para buscar um refresh token por um usuário
+        public async Task<RefreshToken> GetByUserIdAsync(long id)
+        {
+            return await _context.RefreshTokens
+                .Where(t => t.UsuarioId == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public RefreshToken GetByTokenAsync(string refreshToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<RefreshToken> GetRefreshTokenAsync(string token)
+        {
+            throw new NotImplementedException();
         }
     }
 }

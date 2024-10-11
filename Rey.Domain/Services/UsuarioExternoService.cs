@@ -98,5 +98,15 @@ namespace Rey.Domain.Services
         {
             return _usuarioExternoRepository.GeneratePasswordResetTokenAsync(usuarioExterno);   
         }
+
+        public List<UsuarioExterno> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PermissaoExterno> GetUserPermissionsByProfileIds(List<long> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

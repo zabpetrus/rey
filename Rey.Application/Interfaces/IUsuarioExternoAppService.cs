@@ -9,11 +9,11 @@ namespace Rey.Application.Interfaces
 {
     public interface IUsuarioExternoAppService
     {
-        UsuarioExternoViewModel CreateAndGet(UsuarioExternoViewModel permissaoExternaViewModel);
-        bool DeleteById(long id);
+        Task<UsuarioExternoAuthViewModel> CreateAndGetAsync(UsuarioExternoViewModel usuarioExternoViewModel);
+        Task<bool> DeleteById(long id);
         UsuarioExternoViewModel FindUserByCpf(string cpf);
-        List<UsuarioExternoViewModel> GetAll();
-        List<UsuarioExternoViewModel> GetById(long id);
-        bool Update(UsuarioExternoViewModel permissaoExternaViewModel);
+        Task<List<UsuarioExternoViewModel>> GetAll();
+        UsuarioExternoViewModel GetById(long id);
+        Task<bool> Update(UsuarioExternoViewModel usuarioExternoViewModel);
     }
 }

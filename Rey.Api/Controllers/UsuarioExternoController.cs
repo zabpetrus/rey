@@ -26,12 +26,12 @@ namespace Rey.Api.Controllers
         /// </summary>
         /// <returns>An IActionResult.</returns>
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
                 _logger.LogInformation("Tentando obter todos os usuários.");
-                List<UsuarioExternoViewModel> lista = _usuarioExternoAppService.GetAll();
+                List<UsuarioExternoViewModel> lista = await _usuarioExternoAppService.GetAll();
                 if (lista == null)
                 {
                     _logger.LogWarning("Nenhum usuário encontrado.");
@@ -52,7 +52,7 @@ namespace Rey.Api.Controllers
         /// <param name="id">An Id</param>
         /// <returns>An IActionResult.</returns>
         [HttpGet("{id:long}")]
-        public IActionResult GetById(long id)
+        public async Task<IActionResult> GetById(long id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando obter usuário com ID: {id}", id);
-                List<UsuarioExternoViewModel> usuarios = _usuarioExternoAppService.GetById(id);
+                UsuarioExternoViewModel usuarios = _usuarioExternoAppService.GetById(id);
 
                 if (usuarios == null)
                 {
@@ -86,7 +86,7 @@ namespace Rey.Api.Controllers
         /// <param name="usuarioExternoViewModel">A Usuario Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPost]
-        public IActionResult Create([FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
+        public async Task<IActionResult> Create([FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
         {
             try
             {
@@ -97,9 +97,12 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando criar um novo usuário.");
-                UsuarioExternoViewModel usuario = _usuarioExternoAppService.CreateAndGet(usuarioExternoViewModel);
-                return StatusCode(StatusCodes.Status201Created, usuario); // Retorna 201 Created com o objeto criado
 
+                // Chama o serviço assíncrono para criar e autenticar o usuário
+                UsuarioExternoAuthViewModel usuario = await _usuarioExternoAppService.CreateAndGetAsync(usuarioExternoViewModel);
+
+                // Retorna 201 Created com o objeto criado
+                return StatusCode(StatusCodes.Status201Created, usuario);
             }
             catch (Exception ex)
             {
@@ -108,6 +111,7 @@ namespace Rey.Api.Controllers
             }
         }
 
+
         /// <summary>
         /// Update
         /// </summary>
@@ -115,7 +119,7 @@ namespace Rey.Api.Controllers
         /// <param name="usuarioExternoViewModel">A Usuario Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPut("{id:long}")]
-        public IActionResult Update(long id, [FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
+        public async Task<IActionResult> Update(long id, [FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
         {
             try
             {
@@ -126,7 +130,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando atualizar usuário com ID: {id}", id);
-                bool sucesso = _usuarioExternoAppService.Update(usuarioExternoViewModel);
+                bool sucesso = await _usuarioExternoAppService.Update(usuarioExternoViewModel);
 
                 if (!sucesso)
                 {
@@ -149,7 +153,7 @@ namespace Rey.Api.Controllers
         /// <param name="id">An Id</param>
         /// <returns>An IActionResult.</returns>
         [HttpDelete("{id:long}")]
-        public IActionResult Delete(long id)
+        public async Task< IActionResult> Delete(long id)
         {
             try
             {
@@ -160,7 +164,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando deletar usuário com ID: {id}", id);
-                bool sucesso = _usuarioExternoAppService.DeleteById(id);
+                bool sucesso = await _usuarioExternoAppService.DeleteById(id);
 
                 if (!sucesso)
                 {

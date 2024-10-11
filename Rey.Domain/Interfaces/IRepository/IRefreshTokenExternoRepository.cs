@@ -13,18 +13,19 @@ namespace Rey.Domain.Interfaces.IRepository
 
         RefreshToken Create(RefreshToken refreshToken);
 
-        Task<RefreshToken> GetByTokenAsync(string token);
+        Task<RefreshToken> CreateRefreshTokenAsync(string token);
 
-        Task<List<RefreshToken>> GetByUserIdAsync(long userId);
+        Task<RefreshToken> GetByUserIdAsync(long usuarioid);
 
         Task<RefreshToken> UpdateAsync(RefreshToken refreshToken);
 
         Task<bool> RevokeAsync(string token, string revokedByIp);
 
-        Task<bool> DeleteAsync(long id);
-        Task<List<RefreshToken>> GetRefreshTokenByUsuarioIdAsync(long id);
-        Task DeleteById(long id);
-        Task<RefreshToken> GetRefreshTokenAsync(string token);
+        Task<bool> DeleteById(long id);
+
         Task<bool> RemoveRefreshTokenAsync(RefreshToken refreshToken);
+        RefreshToken GetByTokenAsync(string refreshToken);
+        Task<RefreshToken> GetRefreshTokenAsync(string token);
+        Task<List<RefreshToken>> GetRefreshTokenByUsuarioIdAsync(long id);
     }
 }

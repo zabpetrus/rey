@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rey.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d379ee80e6fc19036b02ccf7da09ee6ba0fc2e2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5cdced993b2990cff44de427d6fb7cd5580971c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rey.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rey.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -26,5 +26,7 @@ namespace Rey.Domain.Interfaces.IServices
         List<PerfilExterno> GetPerfilByUser(UsuarioExterno usuarioExterno);
         Task<UsuarioExterno> VerifyAccountTokenAsync(string token);
         Task<RefreshToken> GeneratePasswordResetTokenAsync(UsuarioExterno usuarioExterno);
+        List<UsuarioExterno> GetAll();
+        List<PermissaoExterno> GetUserPermissionsByProfileIds(List<long> list);
     }
 }
