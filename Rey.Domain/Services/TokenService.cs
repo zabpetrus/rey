@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using Rey.Domain.Entities;
+using Rey.Domain.Entities._Abstract;
 using Rey.Domain.Entities.Auth;
+using Rey.Domain.Entities.Dto;
 using Rey.Domain.Enums;
 using Rey.Domain.Interfaces.IRepository;
 using Rey.Domain.Interfaces.IServices;
@@ -21,12 +24,12 @@ namespace Rey.Domain.Services
     {
         private readonly IConfiguration _configuration;
         private readonly IUsuarioExternoService _usuarioExternoService;
-        private readonly IRefreshTokenExternoRepository _tokenRepository;
+        private readonly IRefreshTokenRepository _tokenRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly ILogger<Token> _logger;
 
-        public TokenService(IConfiguration configuration, IUsuarioExternoService usuarioExternoService, IRefreshTokenExternoRepository tokenRepository, IHttpContextAccessor httpContextAccessor, IMapper mapper, ILogger<Token> logger)
+        public TokenService(IConfiguration configuration, IUsuarioExternoService usuarioExternoService, IRefreshTokenRepository tokenRepository, IHttpContextAccessor httpContextAccessor, IMapper mapper, ILogger<Token> logger)
         {
             _configuration = configuration;
             _usuarioExternoService = usuarioExternoService;
@@ -40,15 +43,86 @@ namespace Rey.Domain.Services
         {
             var token = new Token();
 
-            token.AccessToken = GerarJwt(claims);
+            token.AccessToken = GerarJwtWithClaims(claims);
             token.RefreshToken = GenerateRefreshToken();
-            token.AccessTokenExpiration = DateTime.Now.AddMinutes(7);
-            token.RefreshTokenExpiration = DateTime.Now.AddDays(7);
+            token.AccessTokenExpiration = DateTime.UtcNow.AddMinutes(7);
+            token.RefreshTokenExpiration = DateTime.UtcNow.AddDays(7);
 
             return token;
         }
 
-        private string GerarJwt(IEnumerable<Claim> claims)
+        public Token GerarTokenJwt()
+        {
+            var token = new Token();
+
+            // Gerar o JWT sem claims
+            token.AccessToken = GerarJwt();
+
+            // Gerar o Refresh Token (pode ser uma string aleatória ou algo mais seguro)
+            token.RefreshToken = GenerateRefreshToken();
+
+            // Configurar a expiração do Access Token (7 minutos)
+            token.AccessTokenExpiration = DateTime.UtcNow.AddMinutes(7);
+
+            // Configurar a expiração do Refresh Token (7 dias)
+            token.RefreshTokenExpiration = DateTime.UtcNow.AddDays(7);
+
+            return token;
+        }
+
+
+        private string GerarJwt()
+        {
+            // Recuperando a chave secreta do arquivo de configuração
+            string secretKey = _configuration["JWTSettings:Secret"];
+            if (string.IsNullOrEmpty(secretKey))
+            {
+                throw new ArgumentNullException("A chave secreta JWT não foi configurada corretamente.");
+            }
+
+            // Configurando a chave de assinatura usando HMAC-SHA256
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Recuperando o tempo de expiração diretamente como inteiro
+            if (!int.TryParse(_configuration["JWTSettings:AccessTokenExpirationInMinutes"], out int expirationMinutes))
+            {
+                throw new ArgumentException("A configuração do tempo de expiração do token JWT está inválida.");
+            }
+
+            // Definindo a data e hora atual como "não antes" e calculando a data de expiração
+            var notBefore = DateTime.UtcNow;
+            var expires = notBefore.AddMinutes(expirationMinutes);
+
+            // Verificando se Issuer e Audience estão configurados corretamente
+            var issuer = _configuration["JWTSettings:ValidIssuer"];
+            var audience = _configuration["JWTSettings:ValidAudience"];
+            if (string.IsNullOrEmpty(issuer) || string.IsNullOrEmpty(audience))
+            {
+                throw new ArgumentNullException("Issuer ou Audience não estão configurados corretamente.");
+            }
+
+            // Montando o SecurityTokenDescriptor sem claims
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Expires = expires,
+                NotBefore = notBefore,
+                SigningCredentials = creds,
+                Issuer = issuer,
+                Audience = audience
+            };
+
+            // Criando e escrevendo o token JWT
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
+        }
+
+
+
+
+        private string GerarJwtWithClaims(IEnumerable<Claim> claims)
         {
             string secretKey = _configuration["JWTSettings:Secret"];
             if (string.IsNullOrEmpty(secretKey))
@@ -61,10 +135,15 @@ namespace Rey.Domain.Services
 
             var expirationMinutes = double.Parse(_configuration["JWTSettings:AccessTokenExpirationInMinutes"]);
 
+            // Crie a data de não antes como a hora atual
+            var notBefore = DateTime.UtcNow;  // Defina a hora de "não antes"
+            var expires = notBefore.AddMinutes(expirationMinutes); // A data de expiração deve ser definida com base em "não antes"
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(expirationMinutes),
+                Expires = expires,  // Use a data de expiração calculada
+                NotBefore = notBefore,  // Define o "não antes" como agora
                 SigningCredentials = creds,
                 Issuer = _configuration["JWTSettings:ValidIssuer"],
                 Audience = _configuration["JWTSettings:ValidAudience"]
@@ -75,6 +154,7 @@ namespace Rey.Domain.Services
 
             return tokenHandler.WriteToken(token);
         }
+
 
         public string GenerateRefreshToken()
         {
@@ -97,25 +177,36 @@ namespace Rey.Domain.Services
             RefreshToken refreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(randomNumber),
-                Created = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddDays(7), 
-                CreatedByIp = createdByIp
+                Expires = DateTime.UtcNow.AddDays(7),
+                ReasonRevoked = null, // Defina um valor significativo se necessário ou mantenha como null se a coluna permitir
+                Created = DateTime.UtcNow, // Uso de UTC para consistência
+                CreatedByIp = createdByIp,
+                Revoked = null, // Mantenha como null se o token não for revogado imediatamente
+                RevokedByIp = null, // Mantenha como null se não houver revogação
+                ReplacedByToken = null, // Mantenha como null se não houver substituição
+                UsuarioId = 0, // Defina um ID de usuário válido se aplicável
+                TipoUsuario = TipoUsuario.Externo, // Adicionando o tipo de usuário, se necessário
+                RefreshTokenReset = null, // Mantenha como null se não for necessário
+                RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7), // Definindo um tempo de expiração correto
+                ResetPasswordTokenExpiration = null, // Mantenha como null se não houver expiração
             };
 
             return refreshToken; // Retorne o RefreshToken
         }
 
+
         public Token RenovarToken(string refreshToken, List<Claim> claims)
         {
             // Verificar se o Refresh Token ainda é válido
-            RefreshToken tokenNoBanco = _tokenRepository.GetByTokenAsync(refreshToken);
+            RefreshToken tokenNoBanco = _tokenRepository.GetByToken(refreshToken);
+
             if (tokenNoBanco == null || tokenNoBanco.Expires < DateTime.UtcNow)
             {
                 throw new SecurityTokenException("Refresh token inválido ou expirado.");
             }
 
             // Gerar um novo Access Token
-            var novoAccessToken = GerarJwt(claims);
+            string novoAccessToken = GerarJwt();
 
             // Atualizar o Refresh Token se necessário (caso ele esteja próximo da expiração)
             if (tokenNoBanco.Expires < DateTime.UtcNow.AddDays(1))
@@ -123,13 +214,15 @@ namespace Rey.Domain.Services
                 var novoRefreshToken = GenerateRefreshToken();
                 tokenNoBanco.Token = novoRefreshToken;
                 tokenNoBanco.Expires = DateTime.UtcNow.AddDays(7);
-                _tokenRepository.UpdateAsync(tokenNoBanco).Wait();
+
+                //Atualizar o Token no banco
+                _tokenRepository.Update(tokenNoBanco);
             }
 
             return new Token
             {
                 AccessToken = novoAccessToken,
-                RefreshToken = tokenNoBanco.Token, // Retornar o mesmo token ou o novo, caso atualizado
+                RefreshToken = tokenNoBanco.Token, 
                 AccessTokenExpiration = DateTime.UtcNow.AddMinutes(7),
                 RefreshTokenExpiration = tokenNoBanco.Expires
             };
@@ -164,7 +257,134 @@ namespace Rey.Domain.Services
             return principal;
         }
 
+
         public async Task<Token> Login(string username, string senha)
+        {
+            // Buscando o usuário baseado em CPF, email ou nome de usuário
+            UsuarioExterno usuario =
+                await _usuarioExternoService.FindUserByCpfAsync(username) ??
+                await _usuarioExternoService.FindUserByEmailAsync(username) ??
+                await _usuarioExternoService.FindByUsernameAsync(username);
+
+            if (usuario == null)
+            {
+                throw new Exception("Usuário não encontrado.");
+            }
+
+            if (!usuario.VerificarSenha(senha))
+            {
+                throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
+            }
+
+            
+
+            // Gera o token JWT
+            Token token = GerarTokenJwt();
+
+            RevokeToken tokenrevogado = ResolveRevokedIpUser(usuario);
+
+
+            // Criando e salvando o Refresh Token
+            RefreshToken refreshToken = new RefreshToken
+            {
+                Token = token.RefreshToken,
+                Expires = token.RefreshTokenExpiration,
+                ReasonRevoked = tokenrevogado.ReasonRevoked ?? "",
+                Created = DateTime.UtcNow, // Uso de UTC para consistência
+                CreatedByIp = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString(),
+                Revoked = tokenrevogado.Revoked ?? DateTime.UtcNow.AddDays(7),
+                RevokedByIp = tokenrevogado.RevokedByIp ?? "",
+                ReplacedByToken = tokenrevogado.NewToken  ?? "",
+                UsuarioId = usuario.Id,
+                TipoUsuario = TipoUsuario.Externo, // Adicionando o tipo de usuário, se necessário
+                RefreshTokenReset = "",
+                RefreshTokenExpiryTime = DateTime.UtcNow,
+                ResetPasswordTokenExpiration = "",
+            };
+
+            _tokenRepository.Create(refreshToken); // Salvando o RefreshToken no banco
+
+            return token; // Retornando o token gerado
+        }
+
+        private RevokeToken ResolveRevokedIpUser(UsuarioExterno usuario)
+        {
+            // Busca o refresh token associado
+            RefreshToken refreshToken =  _tokenRepository.GetRefreshTokenByToken(usuario);
+
+            // Se o token não for encontrado, retorne um objeto indicando que o token não está revogado
+            if (refreshToken == null)
+            {
+                return new RevokeToken
+                {
+                    IsRevoked = false
+                };
+            }
+
+            // Se o token já foi revogado, retorne as informações de revogação
+            if (refreshToken.IsRevoked)
+            {
+                return new RevokeToken
+                {
+                    Revoked = refreshToken.Revoked,
+                    RevokedByIp = refreshToken.RevokedByIp,
+                    IsRevoked = true,
+                    ReasonRevoked = refreshToken.ReasonRevoked,
+                    NewToken = refreshToken.ReplacedByToken // Se um novo token substituiu este, inclua-o
+                };
+            }
+
+            string currentIpAddress = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
+
+
+            // Verifica se o IP atual é diferente do IP que criou o token (possível atividade suspeita)
+            if (refreshToken.CreatedByIp != currentIpAddress)
+            {
+                // Revoga o token devido ao IP suspeito
+                refreshToken.Revoked = DateTime.UtcNow;
+                refreshToken.RevokedByIp = currentIpAddress;
+                refreshToken.ReasonRevoked = "IP suspeito detectado";
+
+                // Salva as mudanças no banco de dados
+                _tokenRepository.Update(refreshToken);
+
+                // Retorna as informações de revogação
+                return new RevokeToken
+                {
+                    Revoked = refreshToken.Revoked,
+                    RevokedByIp = refreshToken.RevokedByIp,
+                    IsRevoked = true,
+                    ReasonRevoked = refreshToken.ReasonRevoked
+                };
+            }
+
+            // Se o token expirou, revogue e retorne as informações
+            if (refreshToken.IsExpired)
+            {
+                refreshToken.Revoked = DateTime.UtcNow;
+                refreshToken.RevokedByIp = currentIpAddress;
+                refreshToken.ReasonRevoked = "Token expirado";
+
+                _tokenRepository.Update(refreshToken);
+
+                return new RevokeToken
+                {
+                    Revoked = refreshToken.Revoked,
+                    RevokedByIp = refreshToken.RevokedByIp,
+                    IsRevoked = true,
+                    ReasonRevoked = refreshToken.ReasonRevoked
+                };
+            }
+
+            // Se o token ainda está ativo, nenhum revogação foi realizada
+            return new RevokeToken
+            {
+                IsRevoked = false
+            };
+        }
+
+
+        public async Task<Token> LoginOriginal(string username, string senha)
         {
             UsuarioExterno usuario =
                 await _usuarioExternoService.FindUserByCpfAsync(username) ??
@@ -200,12 +420,12 @@ namespace Rey.Domain.Services
             {
                 Token = token.RefreshToken,
                 Expires = token.RefreshTokenExpiration,
-                Created = DateTime.Now,
+                Created = DateTime.UtcNow,
                 CreatedByIp = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString(),
                 UsuarioId = usuario.Id
             };
 
-            await _tokenRepository.CreateAsync(refreshToken); // Salvando o RefreshToken no banco
+            _tokenRepository.Create(refreshToken); // Salvando o RefreshToken no banco
 
             return token;
         }
@@ -213,8 +433,8 @@ namespace Rey.Domain.Services
         public async Task<Token> RefreshToken(string refreshToken, string ipadress)
         {
             // Validar se o refresh token existe no banco de dados
-            RefreshToken token = _tokenRepository.GetByTokenAsync(refreshToken);
-            if (token == null || token.Expires < DateTime.Now)
+            RefreshToken token = _tokenRepository.GetByToken(refreshToken);
+            if (token == null || token.Expires < DateTime.UtcNow)
             {
                 throw new SecurityTokenException("Refresh token inválido ou expirado.");
             }
@@ -247,18 +467,18 @@ namespace Rey.Domain.Services
             // Atualizar o refresh token ou criar um novo se necessário
             var novoRefreshToken = GenerateRefreshToken();
             token.Token = novoRefreshToken;
-            token.Expires = DateTime.Now.AddDays(7);
-            token.Created = DateTime.Now;
+            token.Expires = DateTime.UtcNow.AddDays(7);
+            token.Created = DateTime.UtcNow;
             token.CreatedByIp = ipadress;
 
-            await _tokenRepository.UpdateAsync(token);  // Atualizar o token no banco
+            _tokenRepository.Update(token);  // Atualizar o token no banco
 
             return new Token
             {
                 AccessToken = novoAccessToken.AccessToken,
                 RefreshToken = novoRefreshToken,
-                AccessTokenExpiration = DateTime.Now.AddMinutes(7),
-                RefreshTokenExpiration = DateTime.Now.AddDays(7)
+                AccessTokenExpiration = DateTime.UtcNow.AddMinutes(7),
+                RefreshTokenExpiration = DateTime.UtcNow.AddDays(7)
             };
         }
 
@@ -326,7 +546,7 @@ namespace Rey.Domain.Services
             }
 
             // Buscar todos os tokens de refresh associados ao usuário
-            List<RefreshToken> tokens = await _tokenRepository.GetRefreshTokenByUsuarioIdAsync(usuario.Id);
+            List<RefreshToken> tokens = _tokenRepository.GetRefreshTokenByUsuarioId(usuario.Id);
             if (tokens == null || !tokens.Any())
             {
                 return false; // Não há tokens para este usuário
@@ -335,7 +555,7 @@ namespace Rey.Domain.Services
             // Remover todos os tokens do banco de dados
             foreach (var token in tokens)
             {
-                await _tokenRepository.DeleteById(token.Id);
+                _tokenRepository.DeleteById(token.Id);
             }
 
             return true;
@@ -346,7 +566,7 @@ namespace Rey.Domain.Services
             try
             {
                 // Verifica se o Refresh Token existe no banco de dados
-                RefreshToken refreshToken = await _tokenRepository.GetRefreshTokenAsync(token);
+                RefreshToken refreshToken = _tokenRepository.GetRefreshToken(token);
 
                 if (refreshToken == null)
                 {
@@ -355,7 +575,7 @@ namespace Rey.Domain.Services
                 }
 
                 // Revogar o token removendo-o do banco de dados
-                bool revoked = await _tokenRepository.RemoveRefreshTokenAsync(refreshToken);
+                bool revoked =  _tokenRepository.RemoveRefreshToken(refreshToken);
 
                 if (revoked)
                 {
@@ -375,5 +595,90 @@ namespace Rey.Domain.Services
             }
         }
 
+        private async Task<List<Claim>> GetClaims(UsuarioExterno usuario)
+        {
+
+            List<PermissaoExterno> permissaoExternos = _usuarioExternoService.FetchUserPermissionByUserId(usuario.Id);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuario.Nome),
+            };
+
+            foreach (PermissaoExterno permissao in permissaoExternos)
+            {
+                claims.Add(new Claim("Permission", permissao.Nome));
+            }
+
+            return claims;
+        }
+
+
+
+        private async Task<List<Claim>> GetRoles(UsuarioExterno usuario)
+        {
+
+            List<PerfilExterno> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuario.Nome),
+            };
+
+            foreach (var perfil in perfisDeUsuario)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo));
+            }
+
+            return claims;
+        }
+
+        public RefreshToken? GetByToken(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RefreshToken GetRefreshToken(string refreshToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RefreshToken> FindTokensByUser(UsuarioExterno externo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RefreshToken CreateAndGet(RefreshToken refresh)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveRefreshToken(RefreshToken refreshToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteById(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RefreshToken> GetRefreshTokenByUsuarioId(long usuarioId)
+        {
+            throw new NotImplementedException();
+        }
+
+        string ITokenService.GerarJwt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GenerateToken(List<Claim> listaclaims)
+        {
+            throw new NotImplementedException();
+        }
+
+        RevokeToken ITokenService.ResolveRevokedIpUser(UsuarioExterno usuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

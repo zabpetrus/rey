@@ -1,4 +1,5 @@
 ﻿using Rey.Domain.Entities.Auth;
+using Rey.Domain.Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,16 @@ namespace Rey.Domain.Interfaces.IServices
         Task<bool> ResetPassword(string token, string novasenha);
         Task<UsuarioExterno> Register(Registration registration);
         Task<bool> RevokeTokens(string token);
+        public Token GerarTokenJwt();
+        RefreshToken? GetByToken(string token);
+        RefreshToken GetRefreshToken(string refreshToken);
+        List<RefreshToken> FindTokensByUser(UsuarioExterno externo);
+        RefreshToken CreateAndGet(RefreshToken refresh);
+        bool RemoveRefreshToken(RefreshToken refreshToken);
+        void DeleteById(long id);
+        List<RefreshToken> GetRefreshTokenByUsuarioId(long usuarioId);
+        string GerarJwt();
+        string GenerateToken(List<Claim> listaclaims);
+        RevokeToken ResolveRevokedIpUser(UsuarioExterno usuario);
     }
 }

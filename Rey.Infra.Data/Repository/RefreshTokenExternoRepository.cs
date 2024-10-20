@@ -5,11 +5,10 @@ using Rey.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Rey.Infra.Data.Repository
 {
-    public class RefreshTokenExternoRepository : IRefreshTokenExternoRepository
+    public class RefreshTokenExternoRepository : IRefreshTokenRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -18,13 +17,13 @@ namespace Rey.Infra.Data.Repository
             _context = context;
         }
 
-        // Método para criar um novo refresh token
         public RefreshToken Create(RefreshToken refreshToken)
         {
+            // Obtém tokens existentes que não foram revogados e que ainda não expiraram
             var existingTokens = _context.RefreshTokens
-                .Where(t => t.UsuarioId == refreshToken.UsuarioId && t.IsActive)
-                .ToList();
+                .Where(t => t.UsuarioId == refreshToken.UsuarioId).ToList();
 
+            // Marca os tokens existentes como revogados
             foreach (var token in existingTokens)
             {
                 token.Revoked = DateTime.UtcNow; // Marca como revogado
@@ -32,36 +31,123 @@ namespace Rey.Infra.Data.Repository
                 _context.RefreshTokens.Update(token); // Atualiza o token no banco
             }
 
+            // Adiciona o novo token de refresh
             _context.RefreshTokens.Add(refreshToken);
             _context.SaveChanges();
 
             return refreshToken;
         }
 
-        public async Task<RefreshToken> CreateAsync(RefreshToken refreshToken)
+        public RefreshToken CreateRefreshToken(string token)
         {
-            var existingTokens = await _context.RefreshTokens
-                .Where(t => t.UsuarioId == refreshToken.UsuarioId && t.IsActive)
-                .ToListAsync();
-
-            foreach (var token in existingTokens)
+            var refreshToken = new RefreshToken
             {
-                token.Revoked = DateTime.UtcNow; // Marca como revogado
-                token.RevokedByIp = refreshToken.CreatedByIp;
-                _context.RefreshTokens.Update(token);
-            }
+                Token = token,
+                Created = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
 
-            await _context.RefreshTokens.AddAsync(refreshToken);
-            await _context.SaveChangesAsync();
+            _context.Set<RefreshToken>().Add(refreshToken);
+            _context.SaveChanges();
 
             return refreshToken;
         }
 
-        // Método para atualizar um refresh token
-        public async Task<RefreshToken> UpdateAsync(RefreshToken refreshToken)
+        public bool DeleteById(long id)
         {
-            var existingToken = await _context.RefreshTokens
-                .FirstOrDefaultAsync(t => t.Id == refreshToken.Id);
+            // Busca o refresh token
+            var refreshToken = _context.RefreshTokens.Find(id);
+
+            if (refreshToken != null)
+            {
+                _context.RefreshTokens.Remove(refreshToken); // Remove o token
+                _context.SaveChanges(); // Salva as alterações
+                return true; // Token deletado com sucesso
+            }
+
+            return false; // Token não encontrado
+        }
+
+        public RefreshToken GetByToken(string refreshToken)
+        {
+            return _context.RefreshTokens.FirstOrDefault(t => t.Token == refreshToken);
+        }
+
+        public RefreshToken GetByUserId(long usuarioid)
+        {
+            return _context.Set<RefreshToken>().FirstOrDefault(rt => rt.UsuarioId == usuarioid);
+        }
+
+        public RefreshToken GetRefreshToken(string token)
+        {
+            return _context.RefreshTokens.FirstOrDefault(t => t.Token == token);
+        }
+
+        public RefreshToken? GetRefreshTokenByToken(UsuarioExterno usuario)
+        {
+            var found = _context.RefreshTokens.Find(usuario.Id);
+
+            if (found != null)
+            {
+                RefreshToken refreshToken = new RefreshToken
+                {
+                    Token = found.Token,
+                    Created = DateTime.UtcNow,
+                    Expires = DateTime.UtcNow.AddDays(7),
+                };
+
+                _context.RefreshTokens.Add(refreshToken);
+                _context.SaveChanges();
+
+                return refreshToken;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<RefreshToken> GetRefreshTokenByUsuarioId(long id)
+        {
+            return _context.RefreshTokens
+               .Where(t => t.UsuarioId == id)
+               .ToList();
+        }
+
+        public bool RemoveRefreshToken(RefreshToken refreshToken)
+        {
+            // Busca o token existente
+            var existingToken = _context.RefreshTokens.Find(refreshToken.Id);
+
+            if (existingToken != null)
+            {
+                _context.RefreshTokens.Remove(existingToken); // Remove o token
+                _context.SaveChanges(); // Salva as alterações
+                return true; // Token removido com sucesso
+            }
+
+            return false; // Token não encontrado
+        }
+
+        public bool Revoke(string token, string revokedByIp)
+        {
+            var refreshToken = _context.Set<RefreshToken>().FirstOrDefault(rt => rt.Token == token);
+
+            if (refreshToken == null || refreshToken.IsRevoked)
+            {
+                return false; // Token não encontrado ou já revogado
+            }
+
+            refreshToken.RevokedByIp = revokedByIp;
+            refreshToken.Revoked = DateTime.UtcNow; // Marca como revogado
+
+            _context.SaveChanges();
+            return true;
+        }
+
+        public void Update(RefreshToken refreshToken)
+        {
+            var existingToken = _context.RefreshTokens.FirstOrDefault(t => t.Id == refreshToken.Id);
 
             if (existingToken != null)
             {
@@ -69,133 +155,10 @@ namespace Rey.Infra.Data.Repository
                 existingToken.Expires = refreshToken.Expires;
                 existingToken.CreatedByIp = refreshToken.CreatedByIp;
 
-                _context.RefreshTokens.Update(existingToken);
-                await _context.SaveChangesAsync();
+                _context.RefreshTokens.Update(existingToken); // Atualiza o token no contexto
 
-                return existingToken;
+                _context.SaveChanges(); // Chamada não aguardada
             }
-
-            return null; // Token não encontrado
-        }
-
-        // Método para revogar um refresh token
-        public async Task<bool> RevokeAsync(string token, string revokedByIp)
-        {
-            var refreshToken = await _context.RefreshTokens
-                .FirstOrDefaultAsync(t => t.Token == token && t.IsActive);
-
-            if (refreshToken != null)
-            {
-                refreshToken.Revoked = DateTime.UtcNow;
-                refreshToken.RevokedByIp = revokedByIp;
-
-                _context.RefreshTokens.Update(refreshToken);
-                await _context.SaveChangesAsync();
-
-                return true; // Token revogado com sucesso
-            }
-
-            return false; // Token não encontrado ou já revogado
-        }
-
-        // Método para deletar um refresh token
-        public async Task<bool> DeleteAsync(long id)
-        {
-            var refreshToken = await _context.RefreshTokens.FindAsync(id);
-
-            if (refreshToken != null)
-            {
-                _context.RefreshTokens.Remove(refreshToken);
-                await _context.SaveChangesAsync();
-
-                return true; // Token deletado com sucesso
-            }
-
-            return false;
-        }
-
-        // Método para buscar refresh tokens por UsuarioId
-        public async Task<List<RefreshToken>> GetRefreshTokenByUsuarioIdAsync(long userId)
-        {
-            return await _context.RefreshTokens
-                .Where(t => t.UsuarioId == userId)
-                .ToListAsync();
-        }
-
-        // Método para deletar um refresh token por ID
-        public async Task DeleteById(long id)
-        {
-            var refreshToken = await _context.RefreshTokens.FindAsync(id);
-
-            if (refreshToken != null)
-            {
-                _context.RefreshTokens.Remove(refreshToken);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        // Método para remover um refresh token
-        public async Task<bool> RemoveRefreshTokenAsync(RefreshToken refreshToken)
-        {
-            var existingToken = await _context.RefreshTokens.FindAsync(refreshToken.Id);
-
-            if (existingToken != null)
-            {
-                _context.RefreshTokens.Remove(existingToken);
-                await _context.SaveChangesAsync();
-                return true; // Token removido com sucesso
-            }
-
-            return false; // Token não encontrado
-        }
-
-        // Método para criar um refresh token a partir de uma string
-        public async Task<RefreshToken> CreateRefreshTokenAsync(string token)
-        {
-            var refreshToken = new RefreshToken
-            {
-                Token = token,
-                Created = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddDays(7),
-            };
-
-            await _context.RefreshTokens.AddAsync(refreshToken);
-            await _context.SaveChangesAsync();
-
-            return refreshToken;
-        }
-
-        // Método para deletar por ID (implementação da interface)
-        async Task<bool> IRefreshTokenExternoRepository.DeleteById(long id)
-        {
-            var refreshToken = await _context.RefreshTokens.FindAsync(id);
-
-            if (refreshToken != null)
-            {
-                _context.RefreshTokens.Remove(refreshToken);
-                await _context.SaveChangesAsync();
-                return true; // Token deletado com sucesso
-            }
-
-            return false; // Token não encontrado
-        }
-
-        // Método para buscar um refresh token por um usuário
-        public async Task<RefreshToken> GetByUserIdAsync(long id)
-        {
-            return await _context.RefreshTokens
-                .Where(t => t.UsuarioId == id)
-                .FirstOrDefaultAsync();
-        }
-
-        public RefreshToken GetByTokenAsync(string refreshToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<RefreshToken> GetRefreshTokenAsync(string token)
-        {
-            throw new NotImplementedException();
         }
     }
 }

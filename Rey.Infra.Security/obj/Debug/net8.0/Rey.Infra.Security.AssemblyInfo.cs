@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rey.Infra.Security")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5cdced993b2990cff44de427d6fb7cd5580971c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2da686c02fd818244ff4e59e8c391a2be98703f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rey.Infra.Security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rey.Infra.Security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

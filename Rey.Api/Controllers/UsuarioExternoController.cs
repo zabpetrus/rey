@@ -13,13 +13,15 @@ namespace Rey.Api.Controllers
     public class UsuarioExternoController : ControllerBase
     {
         private readonly IUsuarioExternoAppService _usuarioExternoAppService;
-        private readonly ILogger _logger;
+        private readonly ILogger<UsuarioExternoController> _logger;
 
-        public UsuarioExternoController(IUsuarioExternoAppService usuarioExternoAppService, ILogger logger)
+        public UsuarioExternoController(IUsuarioExternoAppService usuarioExternoAppService, ILogger<UsuarioExternoController> logger)
         {
             _usuarioExternoAppService = usuarioExternoAppService;
             _logger = logger;
         }
+
+
 
         /// <summary>
         /// Get All
@@ -99,7 +101,7 @@ namespace Rey.Api.Controllers
                 _logger.LogInformation("Tentando criar um novo usuário.");
 
                 // Chama o serviço assíncrono para criar e autenticar o usuário
-                UsuarioExternoAuthViewModel usuario = await _usuarioExternoAppService.CreateAndGetAsync(usuarioExternoViewModel);
+                UsuarioExternoViewModel usuario = await _usuarioExternoAppService.CreateAndGetAsync(usuarioExternoViewModel);
 
                 // Retorna 201 Created com o objeto criado
                 return StatusCode(StatusCodes.Status201Created, usuario);
@@ -146,13 +148,14 @@ namespace Rey.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Erro interno no servidor.");
             }
         }
+    
 
-        /// <summary>
-        /// Delete
-        /// </summary>
-        /// <param name="id">An Id</param>
-        /// <returns>An IActionResult.</returns>
-        [HttpDelete("{id:long}")]
+    /// <summary>
+    /// Delete
+    /// </summary>
+    /// <param name="id">An Id</param>
+    /// <returns>An IActionResult.</returns>
+    [HttpDelete("{id:long}")]
         public async Task< IActionResult> Delete(long id)
         {
             try

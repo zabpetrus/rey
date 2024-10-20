@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Rey.Api.Controllers
@@ -24,6 +25,8 @@ namespace Rey.Api.Controllers
         /// Get
         /// </summary>
         /// <returns>An IEnumerable of WeatherForecast.</returns>
+
+        [Authorize]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

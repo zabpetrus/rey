@@ -205,5 +205,29 @@ namespace Rey.Infra.Data.Repository
             return token; // Retorna o token gerado
         }
 
+        public Task<bool> RegisterUserProfileAsync(long userId, long profileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<UsuarioExterno> IUsuarioExternoRepository.DeleteByIdAsync(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UsuarioExterno> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UsuarioExterno> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PermissaoExterno> GetUserPermissionsByProfile(List<PerfilExterno> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

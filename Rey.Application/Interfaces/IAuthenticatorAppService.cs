@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace Rey.Application.Interfaces
 {
-    public interface IAuthenticatorService
+    public interface IAuthenticatorAppService
     {
-        RefreshToken RefreshToken(string accessToken, string refreshToken, string? username);
-        public UsuarioExternoViewModel RevokeToken(string username);
-
-
+        object RefreshToken(string accessToken, string refreshToken, string? username);
+        object RevokeToken(string username);
     }
 }

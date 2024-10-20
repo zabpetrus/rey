@@ -9,59 +9,57 @@ using System.Threading.Tasks;
 
 namespace Rey.Domain.Services
 {
-    public class RefreshTokenExternoService : IRefreshTokenExternoService
+    public class RefreshTokenExternoService : IRefreshTokenService
     {
-        private readonly IRefreshTokenExternoRepository _repository;
+        private readonly IRefreshTokenRepository _repository;
 
-        public RefreshTokenExternoService(IRefreshTokenExternoRepository repository)
+        public RefreshTokenExternoService(IRefreshTokenRepository repository)
         {
             _repository = repository;
         }
 
         public RefreshToken Create(RefreshToken refreshToken)
         {
-            return _repository.Create(refreshToken);    
+            // Chamada síncrona ao repositório para criar o refresh token
+            return _repository.Create(refreshToken);
         }
 
-        public Task<RefreshToken> CreateAsync(RefreshToken refreshToken)
+        public RefreshToken CreateRefreshToken(string token)
         {
-            return _repository.CreateAsync(refreshToken);
+            // Chamada síncrona ao repositório para criar um novo refresh token a partir de um token
+            return _repository.CreateRefreshToken(token);
         }
 
-        public Task<RefreshToken> CreateRefreshTokenAsync(string token)
+        public bool DeleteById(long id)
         {
-            return _repository.CreateRefreshTokenAsync(token);  
-        }
-      
-        public Task<bool> DeleteById(long id)
-        {
+            // Chamada síncrona ao repositório para deletar um refresh token pelo ID
             return _repository.DeleteById(id);
         }
 
-        public Task<RefreshToken> GetByTokenAsync(string token)
+        public RefreshToken GetByUserId(long usuarioid)
         {
-            return _repository.CreateRefreshTokenAsync(token);
+            // Chamada síncrona ao repositório para obter um refresh token pelo ID do usuário
+            return _repository.GetByUserId(usuarioid);
         }
 
-        public Task<RefreshToken> GetByUserIdAsync(long usuarioid)
+        public bool RemoveRefreshToken(RefreshToken refreshToken)
         {
-            return _repository.GetByUserIdAsync(usuarioid);
+            // Chamada síncrona ao repositório para remover um refresh token
+            return _repository.RemoveRefreshToken(refreshToken);
         }
 
-      
-        public Task<bool> RemoveRefreshTokenAsync(RefreshToken refreshToken)
+        public bool Revoke(string token, string revokedByIp)
         {
-            return _repository.RemoveRefreshTokenAsync(refreshToken);   
+            // Chamada síncrona ao repositório para revogar um refresh token
+            return _repository.Revoke(token, revokedByIp);
         }
 
-        public Task<bool> RevokeAsync(string token, string revokedByIp)
+        public void Update(RefreshToken refreshToken)
         {
-            return _repository.RevokeAsync(token, revokedByIp);
+            // Chamada síncrona ao repositório para atualizar um refresh token
+            _repository.Update(refreshToken);
         }
-
-        public Task<RefreshToken> UpdateAsync(RefreshToken refreshToken)
-        {
-            return _repository.UpdateAsync(refreshToken);
-        }           
     }
+
 }
+

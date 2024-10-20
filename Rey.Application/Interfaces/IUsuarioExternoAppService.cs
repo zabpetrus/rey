@@ -9,7 +9,8 @@ namespace Rey.Application.Interfaces
 {
     public interface IUsuarioExternoAppService
     {
-        Task<UsuarioExternoAuthViewModel> CreateAndGetAsync(UsuarioExternoViewModel usuarioExternoViewModel);
+        Task<UsuarioExternoViewModel> CreateAndGetAsync(UsuarioExternoViewModel usuarioExternoViewModel);
+        Task<bool> CreateUserProfile(UsuarioPerfilViewModel request);
         Task<bool> DeleteById(long id);
         UsuarioExternoViewModel FindUserByCpf(string cpf);
         Task<List<UsuarioExternoViewModel>> GetAll();

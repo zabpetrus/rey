@@ -23,11 +23,11 @@ namespace Rey.Application.AppService
         private readonly IPermissaoExternoService _permissaoExternoService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ITokenService _tokenService;
-        private readonly IRefreshTokenExternoService _refreshTokenExternoService ;
+        private readonly IRefreshTokenService _refreshTokenExternoService ;
         private readonly IMapper _mapper;
         private readonly ILogger<UsuarioExternoAppService> _logger;
 
-        public UsuarioExternoAppService(IUsuarioExternoService usuarioExternoService, IPerfilExternoService perfilExternoService, IPermissaoExternoService permissaoExternoService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService, IRefreshTokenExternoService refreshTokenExternoService, IMapper mapper, ILogger<UsuarioExternoAppService> logger)
+        public UsuarioExternoAppService(IUsuarioExternoService usuarioExternoService, IPerfilExternoService perfilExternoService, IPermissaoExternoService permissaoExternoService, IHttpContextAccessor httpContextAccessor, ITokenService tokenService, IRefreshTokenService refreshTokenExternoService, IMapper mapper, ILogger<UsuarioExternoAppService> logger)
         {
             _usuarioExternoService = usuarioExternoService;
             _perfilExternoService = perfilExternoService;
@@ -40,78 +40,20 @@ namespace Rey.Application.AppService
         }
 
       
-        public async Task<UsuarioExternoAuthViewModel> CreateAndGetAsync(UsuarioExternoViewModel permissaoExternaViewModel)
+        public async Task<UsuarioExternoViewModel> CreateAndGetAsync(UsuarioExternoViewModel usuarioExternoViewModel)
         {
             try
             {
                 // Mapeia o ViewModel para o modelo de domínio
-                UsuarioExterno usuario = _mapper.Map<UsuarioExterno>(permissaoExternaViewModel);
+                UsuarioExterno usuario = _mapper.Map<UsuarioExterno>(usuarioExternoViewModel);
+
+                usuario.ConfigurarSenha(usuarioExternoViewModel.Senha);
 
                 // Cria o usuário no banco de dados
                 UsuarioExterno usuarioCriado = await _usuarioExternoService.CreateAsync(usuario);
 
-                // Obtém os perfis (Roles) relacionados ao usuário
-                List<PerfilExterno> perfis = _usuarioExternoService.FetchUserProfilesByUserId(usuarioCriado.Id);
+                return _mapper.Map<UsuarioExternoViewModel>(usuarioCriado);
 
-                // Obtém as permissões (Claims) associadas aos perfis do usuário (se existirem perfis)
-                List<PermissaoExterno> permissoes = perfis.Any()
-                    ? _usuarioExternoService.GetUserPermissionsByProfileIds(perfis.Select(p => p.Id).ToList())
-                    : new List<PermissaoExterno>(); // Lista vazia se não houver perfis
-
-                // Cria as claims do JWT com base nas permissões e informações do usuário
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, usuarioCriado.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, usuarioCriado.Id.ToString()),
-                    new Claim(ClaimTypes.Email, usuarioCriado.Email)
-                };
-
-                // Adicionar as permissões (Claims) personalizadas
-                if (permissoes.Any())
-                {
-                    foreach (PermissaoExterno permissao in permissoes)
-                    {
-                        if (!string.IsNullOrEmpty(permissao.Nome)) // Verifica se o código não é nulo ou vazio
-                        {
-                            claims.Add(new Claim("Permissao", permissao.Nome)); // Claims personalizadas para permissões
-                        }
-                    }
-                }
-
-                // Adicionar os perfis (Roles) como claims de role
-                if (perfis != null && perfis.Any())
-                {
-                    foreach (PerfilExterno perfil in perfis)
-                    {
-                        // Certifique-se de que perfil.Codigo seja uma string
-                        if (!string.IsNullOrEmpty(perfil.Codigo))
-                        {
-                            claims.Add(new Claim(ClaimTypes.Role, perfil.Codigo)); // Claims para perfis (Roles)
-                        }
-                    }
-                }
-                // Gera o AccessToken JWT
-                Token jwtToken = _tokenService.GerarTokenJwtByClaims(claims);
-
-                // Cria a entidade RefreshToken com os dados do token gerado
-                RefreshToken refreshToken = new RefreshToken
-                {
-                    Token = jwtToken.RefreshToken,  // Utiliza o RefreshToken gerado
-                    Created = DateTime.UtcNow,
-                    Expires = jwtToken.RefreshTokenExpiration,
-                    CreatedByIp = _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "IP não disponível",
-                    UsuarioId = usuarioCriado.Id
-                };
-
-                // Salva o refresh token no banco de dados
-                await _refreshTokenExternoService.CreateAsync(refreshToken);
-
-                // Prepara o retorno no formato de UsuarioExternoAuthViewModel com tokens
-                var usuarioAuthViewModel = _mapper.Map<UsuarioExternoAuthViewModel>(usuarioCriado);
-                usuarioAuthViewModel.AccessToken = jwtToken.AccessToken;
-                usuarioAuthViewModel.RefreshToken = jwtToken.RefreshToken;
-
-                return usuarioAuthViewModel; // Retorna o usuário com os tokens
             }
             catch (Exception ex)
             {
@@ -120,7 +62,47 @@ namespace Rey.Application.AppService
             }
         }
 
+        public async Task<bool> CreateUserProfile(UsuarioPerfilViewModel request)
+        {
+            try
+            {
+                // Recupera o usuário e o perfil pelo ID
+                UsuarioExterno usuario = await _usuarioExternoService.GetByIdAsync(request.UsuarioId);
+                PerfilExterno perfil = await _perfilExternoService.GetByIdAsync(request.PerfilId);
 
+                // Verifica se o usuário ou o perfil são nulos
+                if (usuario == null)
+                {
+                    _logger.LogWarning($"Usuário com ID {request.UsuarioId} não encontrado.");
+                    return false;
+                }
+
+                if (perfil == null)
+                {
+                    _logger.LogWarning($"Perfil com ID {request.PerfilId} não encontrado.");
+                    return false;
+                }
+
+                // Registrar o perfil para o usuário
+                bool resultado = await _usuarioExternoService.RegistrarPerfil(usuario.Id, perfil.Id);
+
+                if (resultado)
+                {
+                    _logger.LogInformation($"Perfil {perfil.Id} associado ao usuário {usuario.Id} com sucesso.");
+                }
+                else
+                {
+                    _logger.LogWarning($"Falha ao associar o perfil {perfil.Id} ao usuário {usuario.Id}.");
+                }
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao criar perfil de usuário.");
+                return false;
+            }
+        }
 
 
         public async Task<bool> DeleteById(long id)
@@ -128,7 +110,7 @@ namespace Rey.Application.AppService
             try
             {
                 // Obter o refresh token associado ao usuário
-                var userToken = await _refreshTokenExternoService.GetByUserIdAsync(id);
+                var userToken = _refreshTokenExternoService.GetByUserId(id);
 
                 // Verificar se o usuário existe e se a remoção foi bem-sucedida
                 bool response =  _usuarioExternoService.DeleteById(id);
@@ -138,7 +120,7 @@ namespace Rey.Application.AppService
                     // Se o usuário foi excluído com sucesso, remover o refresh token
                     if (userToken != null)
                     {
-                        await _refreshTokenExternoService.RemoveRefreshTokenAsync(userToken.Token);
+                        _refreshTokenExternoService.RemoveRefreshToken(userToken.Token);
                     }
                     return true; // Usuário e tokens excluídos com sucesso
                 }

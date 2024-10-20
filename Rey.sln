@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rey.Infra.Security", "Rey.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rey.Infra.Data", "Rey.Infra.Data\Rey.Infra.Data.csproj", "{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rey.Trash", "Rey.Trash\Rey.Trash.csproj", "{5D356DAE-2A31-4258-9C8C-0C31F988F8B0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D356DAE-2A31-4258-9C8C-0C31F988F8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D356DAE-2A31-4258-9C8C-0C31F988F8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D356DAE-2A31-4258-9C8C-0C31F988F8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D356DAE-2A31-4258-9C8C-0C31F988F8B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

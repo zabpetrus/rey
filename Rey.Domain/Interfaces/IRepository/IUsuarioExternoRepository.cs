@@ -10,23 +10,27 @@ namespace Rey.Domain.Interfaces.IRepository
 {
     public interface IUsuarioExternoRepository
     {
-        public UsuarioExterno? FindByEmail(string email);
 
-        public UsuarioExterno? FindByCpf(string cpf);
-        Task<UsuarioExterno> FindByUsernameAsync(string username);
-        Task<UsuarioExterno> FindByCpfAsync(string cpf);
-        Task<UsuarioExterno> FindByEmailAsync(string email);
-        List<PerfilExterno> FetchUserProfilesByUserId(long id);
-        UsuarioExterno GetById(long id);
-        Task<UsuarioExterno> GetByIdAsync(long id);
-        bool Update(UsuarioExterno usuario);
-        Task<bool> UpdateAsync(UsuarioExterno usuario);
-        Task DeleteByIdAsync(long id);
-        bool DeleteById(long id);
         Task<UsuarioExterno> CreateAsync(UsuarioExterno novo);
-        Task<UsuarioExterno> GetByResetPasswordTokenAsync(string token);
+        Task<bool> RegisterUserProfileAsync(long userId, long profileId);
+        Task<UsuarioExterno> DeleteByIdAsync(long id);
+        bool DeleteById(long id);
+        UsuarioExterno? FindByCpf(string cpf);
+        Task<UsuarioExterno> FindByCpfAsync(string cpf);
+        UsuarioExterno? FindByEmail(string email);
+        Task<UsuarioExterno> FindByEmailAsync(string email);
+        Task<UsuarioExterno> FindByUsernameAsync(string username);
+        List<PerfilExterno> FetchUserProfilesByUserId(long userid);
+        List<UsuarioExterno> GetAll();
+        Task<UsuarioExterno> GetAllAsync();
         List<PerfilExterno> GetPerfilByUser(UsuarioExterno usuarioExterno);
+        Task<UsuarioExterno> GetByIdAsync(long id);
+        UsuarioExterno GetById(long id);
+        Task<UsuarioExterno> GetByResetPasswordTokenAsync(string token);
+        List<PermissaoExterno> GetUserPermissionsByProfile(List<PerfilExterno> list);
         Task<UsuarioExterno> VerifyAccountTokenAsync(string token);
         Task<RefreshToken> GeneratePasswordResetTokenAsync(UsuarioExterno usuarioExterno);
+        bool Update(UsuarioExterno usuario);
+        Task<bool> UpdateAsync(UsuarioExterno usuario);
     }
 }

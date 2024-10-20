@@ -16,5 +16,7 @@ namespace Rey.Domain.Interfaces.IRepository
         PermissaoExterno GetById(long id);
         bool Update(PermissaoExterno perfilExternoViewModel);
         List<PermissaoExterno> GetByPermissionName(string name);
+
+
     }
 }

@@ -10,12 +10,12 @@ namespace Rey.Application.Interfaces
 {
     public interface IAuthAppService
     {
-        Task<TokenViewModel> Login(LoginRequestViewModel request);
-        Task<TokenViewModel> RefreshToken(RefreshTokenRequest request);
-        Task<bool> ResetPassword(ResetPasswordViewModel model);
-        Task Register(RegisterViewModel model);
-        Task<bool> VerifyAccount(string token);
         Task<bool> ForgotPassword(ForgotPasswordViewModel model);
+        Task<TokenViewModel> Login(LoginRequestViewModel request);
         Task<bool> Logout(LogoutViewModel model);
+        Task<TokenViewModel> RefreshToken(RefreshTokenRequest request);
+        Task Register(RegisterViewModel model);
+        Task<bool> ResetPassword(ResetPasswordViewModel model);
+        Task<bool> VerifyAccount(string token);
     }
 }

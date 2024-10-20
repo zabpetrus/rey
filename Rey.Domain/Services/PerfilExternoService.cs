@@ -39,6 +39,11 @@ namespace Rey.Domain.Services
             return _perfilExternoRepository.GetById(id);
         }
 
+        public Task<PerfilExterno> GetByIdAsync(long perfilId)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(PerfilExterno perfilExternoViewModel)
         {
            return _perfilExternoRepository.Update(perfilExternoViewModel);  

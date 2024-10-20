@@ -14,5 +14,7 @@ namespace Rey.Domain.Interfaces.IRepository
         List<PerfilExterno> GetAll();
         PerfilExterno GetById(long id);
         bool Update(PerfilExterno perfilExternoViewModel);
+
+
     }
 }

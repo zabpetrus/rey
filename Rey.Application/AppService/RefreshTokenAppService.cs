@@ -12,7 +12,7 @@ namespace Rey.Application.AppService
 {
     public class RefreshTokenAppService  : IRefreshTokenAppService
     {
-        private readonly IRefreshTokenExternoService _refreshtokenservice;
+        private readonly IRefreshTokenService _refreshtokenservice;
         private readonly IMapper _mapper;
         private readonly ILogger<RefreshTokenAppService> _logger;
 

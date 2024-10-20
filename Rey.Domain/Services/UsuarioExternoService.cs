@@ -101,10 +101,45 @@ namespace Rey.Domain.Services
 
         public List<UsuarioExterno> GetAll()
         {
+            return _usuarioExternoRepository.GetAll();
+        }
+
+        public List<PermissaoExterno> GetUserPermissionsByProfile(List<PerfilExterno> list)
+        {
+            return _usuarioExternoRepository.GetUserPermissionsByProfile(list);
+        }
+
+        public List<PermissaoExterno> FetchUserPermissionByUserId(long userid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RegistrarPerfil(long id1, long id2)
+        {
             throw new NotImplementedException();
         }
 
         public List<PermissaoExterno> GetUserPermissionsByProfileIds(List<long> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UsuarioExterno? FindUserByEmail(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UsuarioExterno? FindByUsername(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UsuarioExterno GetByResetPasswordToken(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UsuarioExterno CreateAndGet(UsuarioExterno novo)
         {
             throw new NotImplementedException();
         }

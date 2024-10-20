@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rey.Trash.Dto
+namespace Rey.Domain.Entities.Dto
 {
-    public class AuthenticatedResponse
+    public class TokenResult
     {
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
+        public DateTime AccessTokenExpiration { get; set; }
+        public DateTime RefreshTokenExpiration { get; set; }
+        public string Error { get; set; }
     }
 }

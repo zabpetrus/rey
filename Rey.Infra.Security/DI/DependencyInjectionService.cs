@@ -52,7 +52,7 @@ namespace Rey.Infra.Security.DI
         }
         private static void RegisterApplicationServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IAuthenticatorService), typeof(AuthenticatorService));
+            services.AddScoped(typeof(IAuthenticatorAppService), typeof(AuthenticatorAppService));
             services.AddScoped<IUsuarioExternoAppService, UsuarioExternoAppService>(); 
             services.AddScoped<IPerfilExternoAppService, PerfilExternoAppService>();  
             services.AddScoped<IPermissaoExternoAppService, PermissaoExternoAppService>();
@@ -66,7 +66,7 @@ namespace Rey.Infra.Security.DI
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPerfilExternoService, PerfilExternoService>();
             services.AddScoped<IPermissaoExternoService, PermissaoExternoService>();
-            services.AddScoped<IRefreshTokenExternoService,  RefreshTokenExternoService>();
+            services.AddScoped<IRefreshTokenService,  RefreshTokenExternoService>();
             services.AddScoped<IUsuarioExternoService, UsuarioExternoService>();  
           
         }
@@ -75,13 +75,14 @@ namespace Rey.Infra.Security.DI
 
             services.AddScoped<IPerfilExternoRepository, PerfilExternoRepository>();
             services.AddScoped<IPermissaoExternoRepository, PermissaoExternoRepository>();
-            services.AddScoped<IRefreshTokenExternoRepository, RefreshTokenExternoRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenExternoRepository>();
             services.AddScoped<IUsuarioExternoRepository, UsuarioExternoRepository>();
 
         }
         private static void RegisterInfrastructures(IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //
+            services.AddScoped<IAuthAppService, AuthAppService>();
             //services.AddScoped(typeof(Amazon.Interface.IImportacaoPedidoAmazonService), typeof(ImportacaoPedidoAmazonService));
         }
 

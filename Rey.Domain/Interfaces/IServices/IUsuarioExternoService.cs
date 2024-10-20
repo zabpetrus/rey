@@ -28,5 +28,11 @@ namespace Rey.Domain.Interfaces.IServices
         Task<RefreshToken> GeneratePasswordResetTokenAsync(UsuarioExterno usuarioExterno);
         List<UsuarioExterno> GetAll();
         List<PermissaoExterno> GetUserPermissionsByProfileIds(List<long> list);
+        List<PermissaoExterno> FetchUserPermissionByUserId(long id);
+        Task<bool> RegistrarPerfil(long id1, long id2);
+        UsuarioExterno? FindUserByEmail(string username);
+        UsuarioExterno? FindByUsername(string username);
+        UsuarioExterno GetByResetPasswordToken(string token);
+        UsuarioExterno CreateAndGet(UsuarioExterno novo);
     }
 }
