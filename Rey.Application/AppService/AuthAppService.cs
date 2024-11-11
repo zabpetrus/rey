@@ -80,7 +80,7 @@ namespace Rey.Application.AppService
         public TokenResult? LoginInterno(string username, string senha)
         {
             // Buscando o usuário baseado em CPF, email ou nome de usuário
-            UsuarioExterno usuario =
+            Usuario usuario =
                 _usuarioExternoService.FindUserByCpf(username) ??
                 _usuarioExternoService.FindUserByEmail(username) ??
                 _usuarioExternoService.FindByUsername(username);
@@ -163,7 +163,7 @@ namespace Rey.Application.AppService
 
 
         // Método para revogar tokens de um usuário
-        public UsuarioExternoViewModel RevokeToken(string username)
+        public UsuarioViewModel RevokeToken(string username)
         {
             // Buscar o usuário pelo username
             var usuario = _usuarioExternoService.FindByUsernameAsync(username).Result;
@@ -177,7 +177,7 @@ namespace Rey.Application.AppService
             RefreshToken tokens = _refreshTokenService.GetByUserId(usuario.Id);
 
             // Retornar uma ViewModel do usuário (pode ser customizado)
-            return new UsuarioExternoViewModel
+            return new UsuarioViewModel
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,

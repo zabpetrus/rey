@@ -17,18 +17,18 @@ namespace Rey.Domain.Interfaces.IServices
         Task<Token> Login(string username, string senha);
         Task<Token> RefreshToken(string token, string ipadress);
         Task<bool> ResetPassword(string token, string novasenha);
-        Task<UsuarioExterno> Register(Registration registration);
+        Task<Usuario> Register(Registration registration);
         Task<bool> RevokeTokens(string token);
         public Token GerarTokenJwt();
         RefreshToken? GetByToken(string token);
         RefreshToken GetRefreshToken(string refreshToken);
-        List<RefreshToken> FindTokensByUser(UsuarioExterno externo);
+        List<RefreshToken> FindTokensByUser(Usuario externo);
         RefreshToken CreateAndGet(RefreshToken refresh);
         bool RemoveRefreshToken(RefreshToken refreshToken);
         void DeleteById(long id);
         List<RefreshToken> GetRefreshTokenByUsuarioId(long usuarioId);
         string GerarJwt();
         string GenerateToken(List<Claim> listaclaims);
-        RevokeToken ResolveRevokedIpUser(UsuarioExterno usuario);
+        RevokeToken ResolveRevokedIpUser(Usuario usuario);
     }
 }

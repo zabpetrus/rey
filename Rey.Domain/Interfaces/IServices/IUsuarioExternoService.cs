@@ -10,29 +10,29 @@ namespace Rey.Domain.Interfaces.IServices
 {
     public interface IUsuarioExternoService
     {
-        List<PerfilExterno> FetchUserProfilesByUserId(long id);
-        Task<UsuarioExterno> FindByUsernameAsync(string username);
-        UsuarioExterno FindUserByCpf(string cpf);
-        Task<UsuarioExterno> FindUserByCpfAsync(string username);
-        Task<UsuarioExterno> FindUserByEmailAsync(string username);
-        Task<UsuarioExterno> GetByIdAsync(long id);
-        UsuarioExterno GetById(long id);
-        bool Update(UsuarioExterno usuario);
-        Task<bool> UpdateAsync(UsuarioExterno usuario); 
+        List<Perfil> FetchUserProfilesByUserId(long id);
+        Task<Usuario> FindByUsernameAsync(string username);
+        Usuario FindUserByCpf(string cpf);
+        Task<Usuario> FindUserByCpfAsync(string username);
+        Task<Usuario> FindUserByEmailAsync(string username);
+        Task<Usuario> GetByIdAsync(long id);
+        Usuario GetById(long id);
+        bool Update(Usuario usuario);
+        Task<bool> UpdateAsync(Usuario usuario); 
         bool DeleteById(long id);
         Task DeleteByIdAsync(long id);
-        Task<UsuarioExterno> GetByResetPasswordTokenAsync(string token);
-        Task<UsuarioExterno> CreateAsync(UsuarioExterno novo);
-        List<PerfilExterno> GetPerfilByUser(UsuarioExterno usuarioExterno);
-        Task<UsuarioExterno> VerifyAccountTokenAsync(string token);
-        Task<RefreshToken> GeneratePasswordResetTokenAsync(UsuarioExterno usuarioExterno);
-        List<UsuarioExterno> GetAll();
-        List<PermissaoExterno> GetUserPermissionsByProfileIds(List<long> list);
-        List<PermissaoExterno> FetchUserPermissionByUserId(long id);
+        Task<Usuario> GetByResetPasswordTokenAsync(string token);
+        Task<Usuario> CreateAsync(Usuario novo);
+        List<Perfil> GetPerfilByUser(Usuario usuarioExterno);
+        Task<Usuario> VerifyAccountTokenAsync(string token);
+        Task<RefreshToken> GeneratePasswordResetTokenAsync(Usuario usuarioExterno);
+        List<Usuario> GetAll();
+        List<Permissao> GetUserPermissionsByProfileIds(List<long> list);
+        List<Permissao> FetchUserPermissionByUserId(long id);
         Task<bool> RegistrarPerfil(long id1, long id2);
-        UsuarioExterno? FindUserByEmail(string username);
-        UsuarioExterno? FindByUsername(string username);
-        UsuarioExterno GetByResetPasswordToken(string token);
-        UsuarioExterno CreateAndGet(UsuarioExterno novo);
+        Usuario? FindUserByEmail(string username);
+        Usuario? FindByUsername(string username);
+        Usuario GetByResetPasswordToken(string token);
+        Usuario CreateAndGet(Usuario novo);
     }
 }

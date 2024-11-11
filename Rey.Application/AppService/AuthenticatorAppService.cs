@@ -67,7 +67,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
         }
 
         // Obter o usuário associado ao refresh token
-        UsuarioExterno usuario = _usuarioExternoService.GetByIdAsync(storedRefreshToken.UsuarioId).Result;
+        Usuario usuario = _usuarioExternoService.GetByIdAsync(storedRefreshToken.UsuarioId).Result;
         if (usuario == null || (username != null && usuario.Nome != username))
         {
             throw new SecurityTokenException("Usuário associado ao token não encontrado.");
@@ -190,7 +190,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
 
    
 
-    private RevokeToken ResolveRevokedIpUser(UsuarioExterno usuario)
+    private RevokeToken ResolveRevokedIpUser(Usuario usuario)
     {
         // Busca o refresh token associado
         RefreshToken refreshToken = _refreshTokenRepository.GetRefreshTokenByToken(usuario);
@@ -275,7 +275,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
         _logger.LogInformation("Iniciando processo de redefinição de senha.");
 
 
-        UsuarioExterno usuario = _usuarioExternoService.GetByResetPasswordToken(token);
+        Usuario usuario = _usuarioExternoService.GetByResetPasswordToken(token);
 
         if (usuario == null || string.IsNullOrEmpty(novasenha))
         {
@@ -290,10 +290,10 @@ public class AuthenticatorAppService : IAuthenticatorAppService
 
     }
 
-    public UsuarioExterno Register(Registration registration)
+    public Usuario Register(Registration registration)
     {
 
-        UsuarioExterno usuarioExistente = _usuarioExternoService.FindUserByCpf(registration.Cpf) ??
+        Usuario usuarioExistente = _usuarioExternoService.FindUserByCpf(registration.Cpf) ??
             _usuarioExternoService.FindUserByEmail(registration.Email);
 
 
@@ -302,11 +302,11 @@ public class AuthenticatorAppService : IAuthenticatorAppService
             throw new InvalidOperationException("Este usuário já está registrado.");
         }
 
-        UsuarioExterno novo = _mapper.Map<UsuarioExterno>(registration);
+        Usuario novo = _mapper.Map<Usuario>(registration);
 
         novo.VerificarSenha(registration.HashSenha);
 
-        UsuarioExterno criado = _usuarioExternoService.CreateAndGet(novo);  // Salvar o novo usuário no banco
+        Usuario criado = _usuarioExternoService.CreateAndGet(novo);  // Salvar o novo usuário no banco
 
         return criado;
     }
@@ -333,7 +333,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
         // Identificando o ID do usuário, independente do tipo
         long usuarioId;
 
-        if (usuario is UsuarioExterno externo)
+        if (usuario is Usuario externo)
         {
             usuarioId = externo.Id; // Atribuindo o ID do usuário externo
         }
@@ -395,7 +395,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
     }
 
 
-    public bool ValidateToken(string token, UsuarioExterno externo)
+    public bool ValidateToken(string token, Usuario externo)
     {
         // Verifica se o token é nulo ou vazio
         if (string.IsNullOrWhiteSpace(token))
@@ -437,7 +437,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
         try
         {
             // Busca pelo usuário com base no CPF, email ou nome de usuário
-            UsuarioExterno usuario =
+            Usuario usuario =
                 _usuarioExternoService.FindUserByCpf(username) ??
                 _usuarioExternoService.FindUserByEmail(username) ??
                 _usuarioExternoService.FindByUsername(username);
@@ -532,7 +532,7 @@ public class AuthenticatorAppService : IAuthenticatorAppService
         }
     }
 
-    private string? ReplacedByTokenGenerator(UsuarioExterno externo)
+    private string? ReplacedByTokenGenerator(Usuario externo)
     {
         // Encontrando os tokens do Usuário
         List<RefreshToken> refreshTokens = _tokenService.FindTokensByUser(externo);

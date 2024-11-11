@@ -15,7 +15,7 @@ namespace Rey.Domain.Interfaces.IRepository
         RefreshToken GetByToken(string refreshToken);
         RefreshToken GetByUserId(long usuarioid);
         RefreshToken GetRefreshToken(string token);
-        RefreshToken? GetRefreshTokenByToken(UsuarioExterno usuario);
+        RefreshToken? GetRefreshTokenByToken(Usuario usuario);
         List<RefreshToken> GetRefreshTokenByUsuarioId(long id);
         bool RemoveRefreshToken(RefreshToken refreshToken);
         bool Revoke(string token, string revokedByIp);

@@ -19,18 +19,18 @@ namespace Rey.Infra.Data.Context
         }
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        public DbSet<UsuarioExterno> UsuariosExternos { get; set; }
-        public DbSet<PerfilExterno> PerfisExternos { get; set; }
-        public DbSet<PermissaoExterno> PermissoesExternas { get; set; }
-        public DbSet<UsuarioPerfilExterno> UsuariosPerfisExternos { get; set; }
-        public DbSet<PerfilPermissaoExterno> PerfisPermissoesExternos { get; set; }
+        public DbSet<Usuario> UsuariosExternos { get; set; }
+        public DbSet<Perfil> PerfisExternos { get; set; }
+        public DbSet<Permissao> PermissoesExternas { get; set; }
+        public DbSet<UsuarioPerfil> UsuariosPerfisExternos { get; set; }
+        public DbSet<PerfilPermissao> PerfisPermissoesExternos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UsuarioPerfilExterno>()
+            modelBuilder.Entity<UsuarioPerfil>()
                 .HasKey(up => new { up.UsuarioId, up.PerfilId });
 
-            modelBuilder.Entity<PerfilPermissaoExterno>()
+            modelBuilder.Entity<PerfilPermissao>()
                 .HasKey(pp => new { pp.PerfilId, pp.PermissaoId });
         }
 

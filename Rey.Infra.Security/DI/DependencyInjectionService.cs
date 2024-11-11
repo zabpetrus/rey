@@ -53,9 +53,9 @@ namespace Rey.Infra.Security.DI
         private static void RegisterApplicationServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IAuthenticatorAppService), typeof(AuthenticatorAppService));
-            services.AddScoped<IUsuarioExternoAppService, UsuarioExternoAppService>(); 
-            services.AddScoped<IPerfilExternoAppService, PerfilExternoAppService>();  
-            services.AddScoped<IPermissaoExternoAppService, PermissaoExternoAppService>();
+            services.AddScoped<IUsuarioAppService, UsuarioAppService>(); 
+            services.AddScoped<IPerfilAppService, PerfilAppService>();  
+            services.AddScoped<IPermissaoAppService, PermissaoAppService>();
             services.AddScoped<IRefreshTokenAppService,RefreshTokenAppService>();
 
         }
@@ -65,18 +65,18 @@ namespace Rey.Infra.Security.DI
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPerfilExternoService, PerfilExternoService>();
-            services.AddScoped<IPermissaoExternoService, PermissaoExternoService>();
-            services.AddScoped<IRefreshTokenService,  RefreshTokenExternoService>();
-            services.AddScoped<IUsuarioExternoService, UsuarioExternoService>();  
+            services.AddScoped<IPermissaoExternoService, PermissaoService>();
+            services.AddScoped<IRefreshTokenService,  RefreshTokenService>();
+            services.AddScoped<IUsuarioExternoService, UsuarioService>();  
           
         }
         private static void RegisterRepositories(IServiceCollection services)
         {
 
-            services.AddScoped<IPerfilExternoRepository, PerfilExternoRepository>();
-            services.AddScoped<IPermissaoExternoRepository, PermissaoExternoRepository>();
-            services.AddScoped<IRefreshTokenRepository, RefreshTokenExternoRepository>();
-            services.AddScoped<IUsuarioExternoRepository, UsuarioExternoRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+            services.AddScoped<IPermissaoRepository, PermissaoRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
         }
         private static void RegisterInfrastructures(IServiceCollection services)

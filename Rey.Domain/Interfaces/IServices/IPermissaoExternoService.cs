@@ -9,11 +9,11 @@ namespace Rey.Domain.Interfaces.IServices
 {
     public interface IPermissaoExternoService
     {
-        PermissaoExterno CreateAndGet(PermissaoExterno perfil);
+        Permissao CreateAndGet(Permissao perfil);
         bool DeleteById(long id);
-        List<PermissaoExterno> GetAll();
-        PermissaoExterno GetById(long id);
-        List<PermissaoExterno> GetByPermissionName(string name);
-        bool Update(PermissaoExterno perfilExternoViewModel);
+        List<Permissao> GetAll();
+        Permissao GetById(long id);
+        List<Permissao> GetByPermissionName(string name);
+        bool Update(Permissao perfilExternoViewModel);
     }
 }

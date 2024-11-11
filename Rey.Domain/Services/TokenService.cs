@@ -261,7 +261,7 @@ namespace Rey.Domain.Services
         public async Task<Token> Login(string username, string senha)
         {
             // Buscando o usuário baseado em CPF, email ou nome de usuário
-            UsuarioExterno usuario =
+            Usuario usuario =
                 await _usuarioExternoService.FindUserByCpfAsync(username) ??
                 await _usuarioExternoService.FindUserByEmailAsync(username) ??
                 await _usuarioExternoService.FindByUsernameAsync(username);
@@ -307,7 +307,7 @@ namespace Rey.Domain.Services
             return token; // Retornando o token gerado
         }
 
-        private RevokeToken ResolveRevokedIpUser(UsuarioExterno usuario)
+        private RevokeToken ResolveRevokedIpUser(Usuario usuario)
         {
             // Busca o refresh token associado
             RefreshToken refreshToken =  _tokenRepository.GetRefreshTokenByToken(usuario);
@@ -386,7 +386,7 @@ namespace Rey.Domain.Services
 
         public async Task<Token> LoginOriginal(string username, string senha)
         {
-            UsuarioExterno usuario =
+            Usuario usuario =
                 await _usuarioExternoService.FindUserByCpfAsync(username) ??
                 await _usuarioExternoService.FindUserByEmailAsync(username) ??
                 await _usuarioExternoService.FindByUsernameAsync(username);
@@ -401,7 +401,7 @@ namespace Rey.Domain.Services
                 throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
             }
 
-            List<PerfilExterno> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
+            List<Entities.Perfil> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
 
             var claims = new List<Claim>
             {
@@ -440,7 +440,7 @@ namespace Rey.Domain.Services
             }
 
             // Validar o usuário associado ao refresh token
-            UsuarioExterno usuario = await _usuarioExternoService.GetByIdAsync(token.UsuarioId);
+            Usuario usuario = await _usuarioExternoService.GetByIdAsync(token.UsuarioId);
             if (usuario == null)
             {
                 throw new SecurityTokenException("Usuário associado ao token não encontrado.");
@@ -454,7 +454,7 @@ namespace Rey.Domain.Services
             };
 
             // Obtendo os perfis relacionados ao usuário
-            List<PerfilExterno> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
+            List<Entities.Perfil> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
 
             // Adicionar os perfis como roles
             foreach (var perfil in perfisDeUsuario)
@@ -489,7 +489,7 @@ namespace Rey.Domain.Services
             _logger.LogInformation("Iniciando processo de redefinição de senha.");
 
 
-            UsuarioExterno usuario = await _usuarioExternoService.GetByResetPasswordTokenAsync(token);
+            Usuario usuario = await _usuarioExternoService.GetByResetPasswordTokenAsync(token);
 
             if (usuario == null || string.IsNullOrEmpty(novasenha))
             {
@@ -511,10 +511,10 @@ namespace Rey.Domain.Services
            
         }
 
-        public async Task<UsuarioExterno> Register(Registration registration)
+        public async Task<Usuario> Register(Registration registration)
         {
 
-            UsuarioExterno usuarioExistente = await _usuarioExternoService.FindUserByCpfAsync(registration.Cpf) ??
+            Usuario usuarioExistente = await _usuarioExternoService.FindUserByCpfAsync(registration.Cpf) ??
                await _usuarioExternoService.FindUserByEmailAsync(registration.Email);
 
 
@@ -523,11 +523,11 @@ namespace Rey.Domain.Services
                 throw new InvalidOperationException("Este usuário já está registrado.");
             }
 
-            UsuarioExterno novo = _mapper.Map<UsuarioExterno>(registration);
+            Usuario novo = _mapper.Map<Usuario>(registration);
 
             novo.VerificarSenha(registration.HashSenha);
 
-            UsuarioExterno criado = await _usuarioExternoService.CreateAsync(novo);  // Salvar o novo usuário no banco
+            Usuario criado = await _usuarioExternoService.CreateAsync(novo);  // Salvar o novo usuário no banco
 
             return criado;
         }
@@ -535,7 +535,7 @@ namespace Rey.Domain.Services
         public async Task<bool> RevogarTodosTokens(string username)
         {
             // Buscar o usuário no banco de dados
-            UsuarioExterno usuario =
+            Usuario usuario =
               await _usuarioExternoService.FindUserByCpfAsync(username) ??
               await _usuarioExternoService.FindUserByEmailAsync(username) ??
               await _usuarioExternoService.FindByUsernameAsync(username);
@@ -595,18 +595,18 @@ namespace Rey.Domain.Services
             }
         }
 
-        private async Task<List<Claim>> GetClaims(UsuarioExterno usuario)
+        private async Task<List<Claim>> GetClaims(Usuario usuario)
         {
 
-            List<PermissaoExterno> permissaoExternos = _usuarioExternoService.FetchUserPermissionByUserId(usuario.Id);
+            List<Entities.Permissao> permissaoExternos = _usuarioExternoService.FetchUserPermissionByUserId(usuario.Id);
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
             };
 
-            foreach (PermissaoExterno permissao in permissaoExternos)
+            foreach (Entities.Permissao permissao in permissaoExternos)
             {
-                claims.Add(new Claim("Permission", permissao.Nome));
+                claims.Add(new Claim("Permission", (string)permissao.Nome));
             }
 
             return claims;
@@ -614,10 +614,10 @@ namespace Rey.Domain.Services
 
 
 
-        private async Task<List<Claim>> GetRoles(UsuarioExterno usuario)
+        private async Task<List<Claim>> GetRoles(Usuario usuario)
         {
 
-            List<PerfilExterno> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
+            List<Entities.Perfil> perfisDeUsuario = _usuarioExternoService.FetchUserProfilesByUserId(usuario.Id);
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
@@ -641,7 +641,7 @@ namespace Rey.Domain.Services
             throw new NotImplementedException();
         }
 
-        public List<RefreshToken> FindTokensByUser(UsuarioExterno externo)
+        public List<RefreshToken> FindTokensByUser(Usuario externo)
         {
             throw new NotImplementedException();
         }
@@ -676,7 +676,7 @@ namespace Rey.Domain.Services
             throw new NotImplementedException();
         }
 
-        RevokeToken ITokenService.ResolveRevokedIpUser(UsuarioExterno usuario)
+        RevokeToken ITokenService.ResolveRevokedIpUser(Usuario usuario)
         {
             throw new NotImplementedException();
         }

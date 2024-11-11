@@ -3,40 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\zsant\\source\\repos\\Rey\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\appservice\\authenticatorappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\appservice\\authenticatorappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\services\\refreshtokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\services\\refreshtokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\appservice\\authappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\appservice\\authappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\interfaces\\iservices\\_base\\iservicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\interfaces\\iservices\\_base\\iservicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{232E0FFD-CF72-44A1-8BA2-3278CAD1EEFD}|Rey.Api\\Rey.Api.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{232E0FFD-CF72-44A1-8BA2-3278CAD1EEFD}|Rey.Api\\Rey.Api.csproj|solutionrelative:rey.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\services\\usuarioexternoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\services\\usuarioexternoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\services\\_base\\servicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\services\\_base\\servicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\interfaces\\iservices\\irefreshtokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\interfaces\\iservices\\irefreshtokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\interfaces\\iservices\\iusuarioexternoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\interfaces\\iservices\\iusuarioexternoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}|Rey.Infra.Data\\Rey.Infra.Data.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.infra.data\\repository\\permissaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F0636E1-993A-4ED7-BC6F-BE01123DFADA}|Rey.Infra.Data\\Rey.Infra.Data.csproj|solutionrelative:rey.infra.data\\repository\\permissaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\entities\\dto\\tokenresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\entities\\dto\\tokenresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\interfaces\\irepository\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\interfaces\\irepository\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\interfaces\\iauthenticatorappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\interfaces\\iauthenticatorappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\interfaces\\irepository\\_base\\irepositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\interfaces\\irepository\\_base\\irepositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\appservice\\perfilappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\appservice\\perfilappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\interfaces\\iusuarioappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\interfaces\\iusuarioappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.application\\viewmodel\\perfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E05615E-3E6A-4714-8B11-BF00BAB3B810}|Rey.Application\\Rey.Application.csproj|solutionrelative:rey.application\\viewmodel\\perfilviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\entities\\perfilpermissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\entities\\perfilpermissao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\entities\\_abstract\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\entities\\_abstract\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\entities\\usuarioperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\entities\\usuarioperfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|c:\\users\\zsant\\source\\repos\\rey\\rey.domain\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D5CB718-5A92-4099-997E-74C01F23EFD2}|Rey.Domain\\Rey.Domain.csproj|solutionrelative:rey.domain\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,124 +70,188 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthenticatorAppService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\AuthenticatorAppService.cs",
-              "RelativeDocumentMoniker": "Rey.Application\\AppService\\AuthenticatorAppService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\AuthenticatorAppService.cs",
-              "RelativeToolTip": "Rey.Application\\AppService\\AuthenticatorAppService.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAMwJMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T21:26:19.835Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Rey.Api\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Api\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Rey.Api\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAADgv2EAAAAsAAAAAAAAAA==",
+              "Title": "ServiceBase.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\_Base\\ServiceBase.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Services\\_Base\\ServiceBase.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\_Base\\ServiceBase.cs",
+              "RelativeToolTip": "Rey.Domain\\Services\\_Base\\ServiceBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:25:38.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuarioExternoService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\UsuarioExternoService.cs",
-              "RelativeDocumentMoniker": "Rey.Domain\\Services\\UsuarioExternoService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\UsuarioExternoService.cs",
-              "RelativeToolTip": "Rey.Domain\\Services\\UsuarioExternoService.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAzwAgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:25:08.767Z",
+              "WhenOpened": "2024-11-11T19:01:44.345Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthAppService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\AuthAppService.cs",
-              "RelativeDocumentMoniker": "Rey.Application\\AppService\\AuthAppService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\AuthAppService.cs",
-              "RelativeToolTip": "Rey.Application\\AppService\\AuthAppService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAhwBQAAAAxAAAAAAAAAA==",
+              "Title": "IServiceBase.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\_Base\\IServiceBase.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Interfaces\\IServices\\_Base\\IServiceBase.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\_Base\\IServiceBase.cs",
+              "RelativeToolTip": "Rey.Domain\\Interfaces\\IServices\\_Base\\IServiceBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T14:55:27.943Z",
+              "WhenOpened": "2024-11-11T18:57:12.511Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "Rey.Domain\\Services\\TokenService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\TokenService.cs",
-              "RelativeToolTip": "Rey.Domain\\Services\\TokenService.cs",
-              "ViewState": "AgIAANcAAAAAAAAAAAAawBYAAAAgAAAAAAAAAA==",
+              "Title": "PermissaoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Repository\\PermissaoRepository.cs",
+              "RelativeDocumentMoniker": "Rey.Infra.Data\\Repository\\PermissaoRepository.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Infra.Data\\Repository\\PermissaoRepository.cs",
+              "RelativeToolTip": "Rey.Infra.Data\\Repository\\PermissaoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:24:53.799Z",
+              "WhenOpened": "2024-11-11T18:41:50.559Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "IRefreshTokenService.cs",
               "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\IRefreshTokenService.cs",
               "RelativeDocumentMoniker": "Rey.Domain\\Interfaces\\IServices\\IRefreshTokenService.cs",
               "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\IRefreshTokenService.cs",
               "RelativeToolTip": "Rey.Domain\\Interfaces\\IServices\\IRefreshTokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:20:46.143Z",
+              "WhenOpened": "2024-11-11T18:43:01.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RefreshTokenService.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\RefreshTokenService.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Services\\RefreshTokenService.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\RefreshTokenService.cs",
+              "RelativeToolTip": "Rey.Domain\\Services\\RefreshTokenService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAqwB4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T15:45:08.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IRepository\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Interfaces\\IRepository\\IUsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IRepository\\IUsuarioRepository.cs",
+              "RelativeToolTip": "Rey.Domain\\Interfaces\\IRepository\\IUsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:54:55.738Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "IUsuarioExternoService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\IUsuarioExternoService.cs",
-              "RelativeDocumentMoniker": "Rey.Domain\\Interfaces\\IServices\\IUsuarioExternoService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IServices\\IUsuarioExternoService.cs",
-              "RelativeToolTip": "Rey.Domain\\Interfaces\\IServices\\IUsuarioExternoService.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAswCEAAAAWAAAAAAAAAA==",
+              "Title": "IRepositoryBase.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IRepository\\_Base\\IRepositoryBase.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Interfaces\\IRepository\\_Base\\IRepositoryBase.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Interfaces\\IRepository\\_Base\\IRepositoryBase.cs",
+              "RelativeToolTip": "Rey.Domain\\Interfaces\\IRepository\\_Base\\IRepositoryBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:14:14.502Z",
+              "WhenOpened": "2024-11-11T18:58:17.412Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "TokenResult.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\Dto\\TokenResult.cs",
-              "RelativeDocumentMoniker": "Rey.Domain\\Entities\\Dto\\TokenResult.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\Dto\\TokenResult.cs",
-              "RelativeToolTip": "Rey.Domain\\Entities\\Dto\\TokenResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Title": "PerfilAppService.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\PerfilAppService.cs",
+              "RelativeDocumentMoniker": "Rey.Application\\AppService\\PerfilAppService.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\AppService\\PerfilAppService.cs",
+              "RelativeToolTip": "Rey.Application\\AppService\\PerfilAppService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:07:36.778Z",
+              "WhenOpened": "2024-11-11T18:40:28.699Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "IAuthenticatorAppService.cs",
-              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Interfaces\\IAuthenticatorAppService.cs",
-              "RelativeDocumentMoniker": "Rey.Application\\Interfaces\\IAuthenticatorAppService.cs",
-              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Interfaces\\IAuthenticatorAppService.cs",
-              "RelativeToolTip": "Rey.Application\\Interfaces\\IAuthenticatorAppService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Title": "IUsuarioAppService.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Interfaces\\IUsuarioAppService.cs",
+              "RelativeDocumentMoniker": "Rey.Application\\Interfaces\\IUsuarioAppService.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\Interfaces\\IUsuarioAppService.cs",
+              "RelativeToolTip": "Rey.Application\\Interfaces\\IUsuarioAppService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:09:07.007Z",
+              "WhenOpened": "2024-11-11T18:40:03.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PerfilViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\ViewModel\\PerfilViewModel.cs",
+              "RelativeDocumentMoniker": "Rey.Application\\ViewModel\\PerfilViewModel.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Application\\ViewModel\\PerfilViewModel.cs",
+              "RelativeToolTip": "Rey.Application\\ViewModel\\PerfilViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:39:22.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\_Abstract\\User.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Entities\\_Abstract\\User.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\_Abstract\\User.cs",
+              "RelativeToolTip": "Rey.Domain\\Entities\\_Abstract\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:37:58.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UsuarioPerfil.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\UsuarioPerfil.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Entities\\UsuarioPerfil.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\UsuarioPerfil.cs",
+              "RelativeToolTip": "Rey.Domain\\Entities\\UsuarioPerfil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:37:38.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Entities\\Usuario.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\Usuario.cs",
+              "RelativeToolTip": "Rey.Domain\\Entities\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:37:24.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PerfilPermissao.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\PerfilPermissao.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Entities\\PerfilPermissao.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Entities\\PerfilPermissao.cs",
+              "RelativeToolTip": "Rey.Domain\\Entities\\PerfilPermissao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:36:53.698Z",
               "EditorCaption": ""
             },
             {
@@ -253,6 +341,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Rey.Domain\\Services\\TokenService.cs",
+              "ToolTip": "C:\\Users\\zsant\\source\\repos\\Rey\\Rey.Domain\\Services\\TokenService.cs",
+              "RelativeToolTip": "Rey.Domain\\Services\\TokenService.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAwwIsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T15:45:15.565Z",
+              "EditorCaption": ""
             }
           ]
         }

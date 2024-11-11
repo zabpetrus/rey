@@ -16,12 +16,12 @@ namespace Rey.Api.Controllers
     public class PermissaoExternaController : ControllerBase
     {
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IPermissaoExternoAppService _permissaoAppService;
+        private readonly IPermissaoAppService _permissaoAppService;
         private readonly ILogger<PermissaoExternaController> _logger;
 
         public PermissaoExternaController(
             IHttpContextAccessor contextAccessor,
-            IPermissaoExternoAppService permissaoAppService,
+            IPermissaoAppService permissaoAppService,
             ILogger<PermissaoExternaController> logger)
         {
             _contextAccessor = contextAccessor;
@@ -124,7 +124,7 @@ namespace Rey.Api.Controllers
         /// <param name="permissaoExternaViewModel">A Permissao Externa View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPost]
-        public IActionResult CreatePermission([FromBody] PermissaoExternaViewModel permissaoExternaViewModel)
+        public IActionResult CreatePermission([FromBody] PermissaoViewModel permissaoExternaViewModel)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace Rey.Api.Controllers
         /// <param name="permissaoExternaViewModel">A Permissao Externa View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPut("{id:long}")]
-        public IActionResult Update(long id, [FromBody] PermissaoExternaViewModel permissaoExternaViewModel)
+        public IActionResult Update(long id, [FromBody] PermissaoViewModel permissaoExternaViewModel)
         {
             try
             {

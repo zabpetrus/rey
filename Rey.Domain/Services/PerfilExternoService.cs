@@ -12,14 +12,14 @@ namespace Rey.Domain.Services
     public class PerfilExternoService : IPerfilExternoService
     {
 
-        private readonly IPerfilExternoRepository _perfilExternoRepository;
+        private readonly IPerfilRepository _perfilExternoRepository;
 
-        public PerfilExternoService(IPerfilExternoRepository perfilExternoRepository)
+        public PerfilExternoService(IPerfilRepository perfilExternoRepository)
         {
             _perfilExternoRepository = perfilExternoRepository;
         }
 
-        public PerfilExterno CreateAndGet(PerfilExterno perfil)
+        public Perfil CreateAndGet(Perfil perfil)
         {
             return   _perfilExternoRepository.CreateAndGet(perfil);
         }
@@ -29,22 +29,22 @@ namespace Rey.Domain.Services
             return _perfilExternoRepository.DeleteById(id);
         }
 
-        public List<PerfilExterno> GetAll()
+        public List<Perfil> GetAll()
         {
             return _perfilExternoRepository.GetAll();
         }
 
-        public PerfilExterno GetById(long id)
+        public Perfil GetById(long id)
         {
             return _perfilExternoRepository.GetById(id);
         }
 
-        public Task<PerfilExterno> GetByIdAsync(long perfilId)
+        public Task<Perfil> GetByIdAsync(long perfilId)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(PerfilExterno perfilExternoViewModel)
+        public bool Update(Perfil perfilExternoViewModel)
         {
            return _perfilExternoRepository.Update(perfilExternoViewModel);  
         }

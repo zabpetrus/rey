@@ -9,11 +9,11 @@ namespace Rey.Domain.Interfaces.IServices
 {
     public interface IPerfilExternoService
     {
-        PerfilExterno CreateAndGet(PerfilExterno perfil);
+        Perfil CreateAndGet(Perfil perfil);
         bool DeleteById(long id);
-        List<PerfilExterno> GetAll();
-        PerfilExterno GetById(long id);
-        Task<PerfilExterno> GetByIdAsync(long perfilId);
-        bool Update(PerfilExterno perfilExternoViewModel);
+        List<Perfil> GetAll();
+        Perfil GetById(long id);
+        Task<Perfil> GetByIdAsync(long perfilId);
+        bool Update(Perfil perfilExternoViewModel);
     }
 }

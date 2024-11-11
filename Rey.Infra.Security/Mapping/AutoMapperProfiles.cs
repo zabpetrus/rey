@@ -14,20 +14,20 @@ namespace Rey.Infra.Security.Mapping
         public AutoMapperProfiles()
         {
             // Definição dos mapeamentos aqui
-            CreateMap<UsuarioExterno, UsuarioExternoViewModel>();
-            CreateMap<UsuarioExternoViewModel, UsuarioExterno>();
+            CreateMap<Usuario, UsuarioViewModel>();
+            CreateMap<UsuarioViewModel, Usuario>();
 
-            CreateMap<PerfilExterno, PerfilExternoViewModel>();
-            CreateMap<PerfilExternoViewModel, PerfilExterno>();
+            CreateMap<Perfil, PerfilViewModel>();
+            CreateMap<PerfilViewModel, Perfil>();
 
-            CreateMap<PermissaoExterno, PermissaoExternaViewModel>();
-            CreateMap<PermissaoExternaViewModel, PermissaoExterno>();
+            CreateMap<Permissao, PermissaoViewModel>();
+            CreateMap<PermissaoViewModel, Permissao>();
 
-            CreateMap<LoginRequestViewModel, UsuarioExterno>();
+            CreateMap<LoginRequestViewModel, Usuario>();
             
 
-            CreateMap<RegisterViewModel, UsuarioExterno>();
-            CreateMap<ResetPasswordViewModel, UsuarioExterno>();
+            CreateMap<RegisterViewModel, Usuario>();
+            CreateMap<ResetPasswordViewModel, Usuario>();
 
         }
 

@@ -16,12 +16,12 @@ namespace Rey.Api.Controllers
     public class PerfilExternoController : ControllerBase
     {
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IPerfilExternoAppService _perfilAppService;
+        private readonly IPerfilAppService _perfilAppService;
         private readonly ILogger<PerfilExternoController> _logger;
 
         public PerfilExternoController(
             IHttpContextAccessor contextAccessor,
-            IPerfilExternoAppService perfilAppService,
+            IPerfilAppService perfilAppService,
             ILogger<PerfilExternoController> logger)
         {
             _contextAccessor = contextAccessor;
@@ -38,7 +38,7 @@ namespace Rey.Api.Controllers
             try
             {
                 _logger.LogInformation("Tentando obter todas as permissões.");
-                List<PerfilExternoViewModel> lista = _perfilAppService.GetAll();
+                List<PerfilViewModel> lista = _perfilAppService.GetAll();
                 if (lista == null)
                 {
                     _logger.LogWarning("Nenhuma permissão encontrada.");
@@ -69,7 +69,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando obter permissão com ID: {id}", id);
-                PerfilExternoViewModel perfil = _perfilAppService.GetById(id);
+                PerfilViewModel perfil = _perfilAppService.GetById(id);
 
                 if (perfil == null)
                 {
@@ -92,7 +92,7 @@ namespace Rey.Api.Controllers
         /// <param name="perfilExternoViewModel">A Perfil Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPost]
-        public IActionResult Create([FromBody] PerfilExternoViewModel perfilExternoViewModel)
+        public IActionResult Create([FromBody] PerfilViewModel perfilExternoViewModel)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando criar uma nova permissão.");
-                PerfilExternoViewModel perfil = _perfilAppService.CreateAndGet(perfilExternoViewModel);
+                PerfilViewModel perfil = _perfilAppService.CreateAndGet(perfilExternoViewModel);
                 return StatusCode(StatusCodes.Status201Created, perfil); // Retorna 201 Created com o objeto criado
 
             }
@@ -120,7 +120,7 @@ namespace Rey.Api.Controllers
         /// <param name="perfilExternoViewModel">A Perfil Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPut("{id:long}")]
-        public IActionResult Update(long id, [FromBody] PerfilExternoViewModel perfilExternoViewModel)
+        public IActionResult Update(long id, [FromBody] PerfilViewModel perfilExternoViewModel)
         {
             try
             {

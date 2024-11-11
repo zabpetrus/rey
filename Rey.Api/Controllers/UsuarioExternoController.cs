@@ -12,10 +12,10 @@ namespace Rey.Api.Controllers
     [ApiController]
     public class UsuarioExternoController : ControllerBase
     {
-        private readonly IUsuarioExternoAppService _usuarioExternoAppService;
+        private readonly IUsuarioAppService _usuarioExternoAppService;
         private readonly ILogger<UsuarioExternoController> _logger;
 
-        public UsuarioExternoController(IUsuarioExternoAppService usuarioExternoAppService, ILogger<UsuarioExternoController> logger)
+        public UsuarioExternoController(IUsuarioAppService usuarioExternoAppService, ILogger<UsuarioExternoController> logger)
         {
             _usuarioExternoAppService = usuarioExternoAppService;
             _logger = logger;
@@ -33,7 +33,7 @@ namespace Rey.Api.Controllers
             try
             {
                 _logger.LogInformation("Tentando obter todos os usuários.");
-                List<UsuarioExternoViewModel> lista = await _usuarioExternoAppService.GetAll();
+                List<UsuarioViewModel> lista = await _usuarioExternoAppService.GetAll();
                 if (lista == null)
                 {
                     _logger.LogWarning("Nenhum usuário encontrado.");
@@ -65,7 +65,7 @@ namespace Rey.Api.Controllers
                 }
 
                 _logger.LogInformation("Tentando obter usuário com ID: {id}", id);
-                UsuarioExternoViewModel usuarios = _usuarioExternoAppService.GetById(id);
+                UsuarioViewModel usuarios = _usuarioExternoAppService.GetById(id);
 
                 if (usuarios == null)
                 {
@@ -88,7 +88,7 @@ namespace Rey.Api.Controllers
         /// <param name="usuarioExternoViewModel">A Usuario Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
+        public async Task<IActionResult> Create([FromBody] UsuarioViewModel usuarioExternoViewModel)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Rey.Api.Controllers
                 _logger.LogInformation("Tentando criar um novo usuário.");
 
                 // Chama o serviço assíncrono para criar e autenticar o usuário
-                UsuarioExternoViewModel usuario = await _usuarioExternoAppService.CreateAndGetAsync(usuarioExternoViewModel);
+                UsuarioViewModel usuario = await _usuarioExternoAppService.CreateAndGetAsync(usuarioExternoViewModel);
 
                 // Retorna 201 Created com o objeto criado
                 return StatusCode(StatusCodes.Status201Created, usuario);
@@ -121,7 +121,7 @@ namespace Rey.Api.Controllers
         /// <param name="usuarioExternoViewModel">A Usuario Externo View Model</param>
         /// <returns>An IActionResult.</returns>
         [HttpPut("{id:long}")]
-        public async Task<IActionResult> Update(long id, [FromBody] UsuarioExternoViewModel usuarioExternoViewModel)
+        public async Task<IActionResult> Update(long id, [FromBody] UsuarioViewModel usuarioExternoViewModel)
         {
             try
             {
